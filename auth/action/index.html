@@ -1,0 +1,320 @@
+<!doctype html>
+<!--
+  Fixtock account action handler — host at  https://fixtock.com/auth/action
+  (e.g. Firebase Hosting: public/auth/action/index.html)
+
+  Firebase sends every email action here once this URL is set as the
+  "Action URL" in Firebase Console → Authentication → Templates:
+     ?mode=resetPassword | verifyEmail | recoverEmail
+     &oobCode=<one-time code>&apiKey=<web API key>&continueUrl=…&lang=…
+
+  Handles:
+    resetPassword → verifies the code, shows the account email, asks for a new
+                    password, confirms it with Firebase
+    verifyEmail   → confirms the address
+    recoverEmail  → restores the previous address (after an unwanted change)
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<!-- never leak the one-time code to other sites through the Referer header -->
+<meta name="referrer" content="no-referrer">
+<title>Fixtock — Account</title>
+<style>
+  :root{
+    --navy:#0B2160; --navy-2:#0E2A6B; --blue:#1F6FFF; --blue-2:#0E2F86;
+    --page:#F4F6FB; --card:#FFFFFF; --text:#0F1B33; --muted:#5E6B85;
+    --border:#E2E8F3; --danger:#D9363E; --ok:#12A150; --focus:rgba(31,111,255,.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --page:#0B1220; --card:#131C2E; --text:#E8EEF9; --muted:#9AA8C2;
+           --border:#26324A; --danger:#FF7A7F; --ok:#4FD08B; --focus:rgba(91,155,255,.25); }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%}
+  body{
+    font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 100% -10%, rgba(31,111,255,.18), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(14,47,134,.16), transparent 60%),
+      var(--page);
+    color:var(--text); display:flex; align-items:center; justify-content:center;
+    padding:24px 16px; min-height:100vh;
+  }
+  .card{
+    width:100%; max-width:420px; background:var(--card); border:1px solid var(--border);
+    border-radius:20px; padding:28px 24px 24px; box-shadow:0 20px 50px rgba(5,14,43,.12);
+  }
+  .brand{display:flex; align-items:center; gap:12px; margin-bottom:22px}
+  .brand svg{border-radius:14px; flex:none}
+  .brand b{font-size:22px; letter-spacing:-.3px}
+  h1{font-size:21px; margin:0 0 6px; letter-spacing:-.2px}
+  p{margin:0 0 18px; color:var(--muted); line-height:1.5; font-size:15px}
+  .email{color:var(--text); font-weight:600; word-break:break-all}
+  label{display:block; font-size:13px; font-weight:600; margin:14px 0 6px}
+  .field{position:relative}
+  input{
+    width:100%; padding:13px 46px 13px 14px; font-size:16px; color:var(--text);
+    background:var(--page); border:1px solid var(--border); border-radius:12px; outline:none;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  input:focus{border-color:var(--blue); box-shadow:0 0 0 4px var(--focus)}
+  input[aria-invalid="true"]{border-color:var(--danger)}
+  .toggle{
+    position:absolute; right:6px; top:50%; transform:translateY(-50%);
+    border:0; background:transparent; color:var(--muted); cursor:pointer;
+    padding:8px; border-radius:8px; font-size:13px; font-weight:600;
+  }
+  .rules{list-style:none; padding:0; margin:12px 0 0; display:grid; gap:6px}
+  .rules li{font-size:13px; color:var(--muted); display:flex; gap:8px; align-items:center}
+  .rules li::before{content:""; width:14px; height:14px; border-radius:50%;
+    border:2px solid var(--border); flex:none}
+  .rules li.ok{color:var(--ok)}
+  .rules li.ok::before{border-color:var(--ok); background:var(--ok);
+    box-shadow: inset 0 0 0 2px var(--card)}
+  .err{color:var(--danger); font-size:13.5px; margin:10px 0 0; min-height:1em}
+  .btn{
+    display:block; width:100%; margin-top:20px; padding:14px; font-size:16px; font-weight:700;
+    color:#fff; border:0; border-radius:12px; cursor:pointer; text-align:center; text-decoration:none;
+    background:linear-gradient(135deg,var(--blue),var(--blue-2));
+    box-shadow:0 8px 20px rgba(31,111,255,.25);
+  }
+  .btn[disabled]{opacity:.55; cursor:not-allowed; box-shadow:none}
+  .btn.secondary{background:transparent; color:var(--blue); box-shadow:none; border:1px solid var(--border)}
+  .icon{width:56px; height:56px; border-radius:50%; display:grid; place-items:center; margin:4px 0 14px}
+  .icon.ok{background:rgba(18,161,80,.12); color:var(--ok)}
+  .icon.bad{background:rgba(217,54,62,.12); color:var(--danger)}
+  .spinner{width:28px; height:28px; border-radius:50%; border:3px solid var(--border);
+    border-top-color:var(--blue); animation:spin .8s linear infinite; margin:8px 0 16px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .foot{margin-top:18px; font-size:12.5px; color:var(--muted); text-align:center}
+  .foot a{color:var(--blue); text-decoration:none}
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+<main class="card" aria-live="polite">
+  <div class="brand"><svg viewBox="0 0 512 512" width="56" height="56" aria-hidden="true"><defs> <linearGradient id="bgI" x1="0" y1="0" x2="1" y2="1"> <stop offset="0" stop-color="#2A7BFF"/><stop offset="0.5" stop-color="#1747BE"/><stop offset="1" stop-color="#0A1A48"/> </linearGradient> <radialGradient id="glowI" cx="0.3" cy="0.22" r="0.7"> <stop offset="0" stop-color="#8CC0FF" stop-opacity="0.45"/><stop offset="1" stop-color="#8CC0FF" stop-opacity="0"/> </radialGradient> <linearGradient id="b1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7FB4FF"/><stop offset="1" stop-color="#3D7EF5"/></linearGradient> <linearGradient id="b2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7DDCFF"/><stop offset="1" stop-color="#2BA8F0"/></linearGradient> <linearGradient id="b3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6FF0E4"/><stop offset="1" stop-color="#1CC2C9"/></linearGradient> <linearGradient id="b4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8CF5B8"/><stop offset="1" stop-color="#22C08A"/></linearGradient> <linearGradient id="arrowG" x1="0" y1="1" x2="1" y2="0"> <stop offset="0" stop-color="#EAF2FF"/><stop offset="1" stop-color="#FFFFFF"/> </linearGradient> <linearGradient id="houseG" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#DCE8FF"/> </linearGradient> <linearGradient id="boxG" x1="0" y1="0" x2="0" y2="1"> <stop offset="0" stop-color="#FFD58A"/><stop offset="1" stop-color="#F0A93B"/> </linearGradient> <radialGradient id="floorI" cx="0.5" cy="0.5" r="0.5"> <stop offset="0" stop-color="#030B26" stop-opacity="0.5"/><stop offset="1" stop-color="#030B26" stop-opacity="0"/> </radialGradient> <clipPath id="rc"><rect width="512" height="512" rx="112"/></clipPath></defs><g clip-path="url(#rc)"><rect width="512" height="512" fill="url(#bgI)"/> <rect width="512" height="512" fill="url(#glowI)"/> <ellipse cx="256" cy="408" rx="160" ry="14" fill="url(#floorI)"/> <g> <rect x="150" y="104" width="38" height="0" fill="none"/> <rect x="152" y="226" width="40" height="66" rx="7" fill="url(#b1)"/> <rect x="204" y="190" width="40" height="102" rx="7" fill="url(#b2)"/> <rect x="256" y="152" width="40" height="140" rx="7" fill="url(#b3)"/> <rect x="308" y="112" width="40" height="180" rx="7" fill="url(#b4)"/> </g> <g stroke="#0B2160" stroke-width="9" stroke-linejoin="round" fill="#0B2160"> <path d="M118.0,284.0 Q252.0,262.0 350.0,160.0 L362.3,171.8 Q259.9,269.6 118.0,284.0 Z"/><path d="M335.4,152.9 L388.7,132.0 L370.0,186.1 Z"/> </g> <g fill="url(#arrowG)"> <path d="M118.0,284.0 Q252.0,262.0 350.0,160.0 L362.3,171.8 Q259.9,269.6 118.0,284.0 Z"/><path d="M335.4,152.9 L388.7,132.0 L370.0,186.1 Z"/> </g> <path d="M150,150 C153,162 156,165 168,168 C156,171 153,174 150,186 C147,174 144,171 132,168 C144,165 147,162 150,150 Z" fill="#FFFFFF" opacity="0.95"/> <g fill="none" stroke="#BFD6FF" stroke-opacity="0.85" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"> <path d="M256,310 Q176,310 166,334"/> <line x1="256" y1="310" x2="256" y2="324"/> <path d="M256,310 Q336,310 346,334"/> </g> <circle cx="256" cy="310" r="5.5" fill="#FFFFFF"/> <g> <path d="M125.0,365.8 L164,340 L203.0,365.8" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/> <path d="M131.0,363.8 L164,350 L197.0,363.8 L197.0,403.8 L131.0,403.8 Z" fill="url(#houseG)"/> <rect x="146.84" y="372.6" width="34.32" height="31.200000000000003" rx="2.5" fill="#0C2466"/> <rect x="150.1448" y="391.4448" width="12.3552" height="12.3552" rx="1.5" fill="url(#boxG)"/> <rect x="165.5" y="391.4448" width="12.3552" height="12.3552" rx="1.5" fill="url(#boxG)"/> <rect x="157.8224" y="377.08959999999996" width="12.3552" height="12.3552" rx="1.5" fill="url(#boxG)"/> </g> <g> <path d="M213.0,358.2 L256,330 L299.0,358.2" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/> <path d="M219.0,356.2 L256,340 L293.0,356.2 L293.0,404.2 L219.0,404.2 Z" fill="url(#houseG)"/> <rect x="236.76" y="366.76" width="38.480000000000004" height="37.44" rx="2.5" fill="#0C2466"/> <rect x="240.6472" y="390.3472" width="13.8528" height="13.8528" rx="1.5" fill="url(#boxG)"/> <rect x="257.5" y="390.3472" width="13.8528" height="13.8528" rx="1.5" fill="url(#boxG)"/> <rect x="249.0736" y="374.4944" width="13.8528" height="13.8528" rx="1.5" fill="url(#boxG)"/> </g> <g> <path d="M309.0,365.8 L348,340 L387.0,365.8" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/> <path d="M315.0,363.8 L348,350 L381.0,363.8 L381.0,403.8 L315.0,403.8 Z" fill="url(#houseG)"/> <rect x="330.84" y="372.6" width="34.32" height="31.200000000000003" rx="2.5" fill="#0C2466"/> <rect x="334.1448" y="391.4448" width="12.3552" height="12.3552" rx="1.5" fill="url(#boxG)"/> <rect x="349.5" y="391.4448" width="12.3552" height="12.3552" rx="1.5" fill="url(#boxG)"/> <rect x="341.8224" y="377.08959999999996" width="12.3552" height="12.3552" rx="1.5" fill="url(#boxG)"/> </g></g></svg><b>Fixtock</b></div>
+
+  <!-- loading -->
+  <section id="v-loading">
+    <div class="spinner" role="status" aria-label="Loading"></div>
+    <h1>Checking your link…</h1>
+    <p>This only takes a moment.</p>
+  </section>
+
+  <!-- reset form -->
+  <section id="v-reset" hidden>
+    <h1>Set a new password</h1>
+    <p>For <span class="email" id="reset-email"></span></p>
+    <form id="reset-form" novalidate>
+      <label for="pw">New password</label>
+      <div class="field">
+        <input id="pw" type="password" autocomplete="new-password" required>
+        <button class="toggle" type="button" data-for="pw">Show</button>
+      </div>
+      <ul class="rules" id="rules">
+        <li data-rule="len">At least 8 characters</li>
+        <li data-rule="mix">Letters and numbers</li>
+      </ul>
+      <label for="pw2">Confirm new password</label>
+      <div class="field">
+        <input id="pw2" type="password" autocomplete="new-password" required>
+        <button class="toggle" type="button" data-for="pw2">Show</button>
+      </div>
+      <p class="err" id="reset-err" role="alert"></p>
+      <button class="btn" id="reset-btn" type="submit" disabled>Save new password</button>
+    </form>
+  </section>
+
+  <!-- success / info -->
+  <section id="v-done" hidden>
+    <div class="icon ok" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </div>
+    <h1 id="done-title">Password updated</h1>
+    <p id="done-text">You can now sign in to Fixtock with your new password.</p>
+    <a class="btn" id="done-btn" href="https://fixtock.com">Open Fixtock</a>
+  </section>
+
+  <!-- error -->
+  <section id="v-error" hidden>
+    <div class="icon bad" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 7v6M12 17h.01"/></svg>
+    </div>
+    <h1 id="error-title">This link can't be used</h1>
+    <p id="error-text">It may have expired or already been used. Request a new one from the Fixtock app.</p>
+    <a class="btn secondary" href="https://fixtock.com">Go to fixtock.com</a>
+  </section>
+
+  <div class="foot">Need help? <a href="mailto:support@fixtock.com">support@fixtock.com</a></div>
+</main>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth, verifyPasswordResetCode, confirmPasswordReset,
+    applyActionCode, checkActionCode,
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  // Firebase puts the web API key in every action link. The fallback is only
+  // used if someone opens the page without it — paste your Web API key
+  // (Project settings → General) or leave it empty.
+  const FALLBACK_API_KEY = "";
+
+  const q = new URLSearchParams(location.search);
+  const mode = q.get("mode");
+  const oobCode = q.get("oobCode");
+  const apiKey = q.get("apiKey") || FALLBACK_API_KEY;
+  const continueUrl = safeUrl(q.get("continueUrl")) || "https://fixtock.com";
+  const lang = q.get("lang") || "en";
+
+  // Remove the one-time code from the address bar / history.
+  history.replaceState(null, "", location.pathname);
+
+  const $ = (id) => document.getElementById(id);
+  const show = (id) => {
+    for (const v of ["v-loading", "v-reset", "v-done", "v-error"]) $(v).hidden = v !== id;
+  };
+
+  function fail(title, text) {
+    if (title) $("error-title").textContent = title;
+    if (text) $("error-text").textContent = text;
+    show("v-error");
+  }
+
+  function done(title, text, cta = "Open Fixtock") {
+    $("done-title").textContent = title;
+    $("done-text").textContent = text;
+    $("done-btn").textContent = cta;
+    $("done-btn").href = continueUrl;
+    show("v-done");
+  }
+
+  function safeUrl(u) {
+    try {
+      const url = new URL(u);
+      // only send people back to our own site / app links
+      return /(^|\.)fixtock\.com$/i.test(url.hostname) && url.protocol === "https:" ? url.href : null;
+    } catch { return null; }
+  }
+
+  const MESSAGES = {
+    "auth/expired-action-code": ["This link has expired", "Reset links are valid for a limited time. Request a new one from the Fixtock app."],
+    "auth/invalid-action-code": ["This link was already used", "Each link works once. Request a new one from the Fixtock app if you still need it."],
+    "auth/user-disabled": ["Account disabled", "This account has been disabled. Contact support@fixtock.com."],
+    "auth/user-not-found": ["Account not found", "This account no longer exists."],
+    "auth/network-request-failed": ["You're offline", "Check your internet connection and reload this page."],
+  };
+  const explain = (e) => MESSAGES[e?.code] || ["Something went wrong", "Please try again, or request a new link from the Fixtock app."];
+
+  if (!mode || !oobCode || !apiKey) {
+    fail("Invalid link", "This page opens from the link in a Fixtock email. Request a new one from the app.");
+  } else {
+    const auth = getAuth(initializeApp({ apiKey }));
+    auth.languageCode = lang;
+    ({ resetPassword, verifyEmail, recoverEmail }[mode] || unknownMode)(auth);
+  }
+
+  function unknownMode() {
+    fail("Unsupported link", "This link type isn't supported. Request a new one from the Fixtock app.");
+  }
+
+  // ---------------------------------------------------------------- reset
+  async function resetPassword(auth) {
+    let email;
+    try {
+      email = await verifyPasswordResetCode(auth, oobCode);
+    } catch (e) {
+      return fail(...explain(e));
+    }
+    $("reset-email").textContent = email;
+    show("v-reset");
+
+    const pw = $("pw"), pw2 = $("pw2"), btn = $("reset-btn"), err = $("reset-err");
+    const rules = {
+      len: (v) => v.length >= 8,
+      mix: (v) => /[A-Za-z]/.test(v) && /\d/.test(v),
+    };
+
+    function check() {
+      const v = pw.value;
+      let all = true;
+      for (const li of $("rules").children) {
+        const ok = rules[li.dataset.rule](v);
+        li.classList.toggle("ok", ok);
+        all &&= ok;
+      }
+      const match = pw2.value.length > 0 && v === pw2.value;
+      pw2.setAttribute("aria-invalid", pw2.value && !match ? "true" : "false");
+      err.textContent = pw2.value && !match ? "Passwords don't match." : "";
+      btn.disabled = !(all && match);
+    }
+    pw.addEventListener("input", check);
+    pw2.addEventListener("input", check);
+    pw.focus();
+
+    document.querySelectorAll(".toggle").forEach((t) =>
+      t.addEventListener("click", () => {
+        const input = $(t.dataset.for);
+        const hidden = input.type === "password";
+        input.type = hidden ? "text" : "password";
+        t.textContent = hidden ? "Hide" : "Show";
+      }),
+    );
+
+    $("reset-form").addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+      if (btn.disabled) return;
+      btn.disabled = true;
+      btn.textContent = "Saving…";
+      err.textContent = "";
+      try {
+        await confirmPasswordReset(auth, oobCode, pw.value);
+        done("Password updated", "You can now sign in to Fixtock with your new password.", "Back to Fixtock");
+      } catch (e) {
+        btn.textContent = "Save new password";
+        if (e?.code === "auth/weak-password" || e?.code === "auth/password-does-not-meet-requirements") {
+          err.textContent = e.message?.replace(/^Firebase:\s*/, "").replace(/\s*\(auth\/[^)]+\)\.?$/, "")
+            || "Choose a stronger password.";
+          btn.disabled = false;
+        } else if (e?.code === "auth/network-request-failed") {
+          err.textContent = "You're offline. Check your connection and try again.";
+          btn.disabled = false;
+        } else {
+          fail(...explain(e));
+        }
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------- verify
+  async function verifyEmail(auth) {
+    try {
+      await applyActionCode(auth, oobCode);
+      done("Email verified", "Thanks — your email address is confirmed.", "Continue to Fixtock");
+    } catch (e) {
+      fail(...explain(e));
+    }
+  }
+
+  // ---------------------------------------------------------------- recover
+  async function recoverEmail(auth) {
+    try {
+      const info = await checkActionCode(auth, oobCode);
+      await applyActionCode(auth, oobCode);
+      done(
+        "Email restored",
+        `Your sign-in email is back to ${info?.data?.email ?? "your previous address"}. ` +
+          "If you didn't request the change, reset your password now from the Fixtock app.",
+        "Continue to Fixtock",
+      );
+    } catch (e) {
+      fail(...explain(e));
+    }
+  }
+</script>
+</body>
+</html>
