@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Release notes · Fixtock</title><meta name="description" content="What's new in Fixtock: version 1.0.0 beta release notes.">
+<link rel="icon" href="assets/favicon.png"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet"><style>:root{--brand:#2F6BFF;--ink:#0B1437;--body:#3B4767;--muted:#6A7591;--line:#E3E8F3;--bg:#F5F7FC;--card:#fff;--tint:#EEF4FF}
+@media (prefers-color-scheme:dark){:root{--ink:#EEF2FF;--body:#B9C3DD;--muted:#8792B0;--line:#1D2850;--bg:#070C22;--card:#0F1838;--tint:#12204A}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--body);font:16px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.top{background:linear-gradient(150deg,#0B1437,#1E2A78 60%,#2B4FC8);color:#fff;padding:22px 0 64px}.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.nav{display:flex;justify-content:space-between;align-items:center}.nav a{color:#fff;text-decoration:none;font-weight:800;display:flex;gap:10px;align-items:center;font-size:19px}.nav img{width:34px;height:34px;border-radius:9px}
+.nav span a{font-size:14px;font-weight:600;opacity:.85}
+.top h1{font-size:clamp(32px,5vw,46px);margin:46px 0 8px;letter-spacing:-.03em;line-height:1.1}.pill{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+.top p{color:rgba(235,241,255,.82);max-width:640px;margin:12px 0 0}
+main{margin-top:-36px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:8px 32px 28px;box-shadow:0 12px 32px rgba(11,20,55,.08)}
+h2{color:var(--ink);font-size:23px;letter-spacing:-.02em;margin:34px 0 10px;padding-top:6px}h3{color:var(--ink);font-size:17.5px;margin:26px 0 6px}
+hr{border:0;border-top:1px solid var(--line);margin:28px 0}ul{padding-left:20px}li{margin:6px 0}li::marker{color:var(--brand)}strong{color:var(--ink)}
+blockquote{margin:14px 0;padding:10px 16px;background:var(--tint);border-left:3px solid var(--brand);border-radius:0 10px 10px 0}blockquote p{margin:0}
+a{color:var(--brand)}em{color:var(--muted)}footer{text-align:center;color:var(--muted);font-size:13.5px;padding:36px 16px}
+@media(max-width:560px){.card{padding:4px 18px 22px}}</style></head>
+<body><div class="top"><div class="wrap"><div class="nav"><a href="index.html"><img src="assets/logo.png" alt="">Fixtock</a><span><a href="index.html">← Back to home</a></span></div>
+<span class="pill" style="margin-top:40px">Version 1.0.0 · Beta · October 2026</span><h1 style="margin-top:14px">Release notes</h1></div></div>
+<main class="wrap"><article class="card"><h2>Version 1.0.0 (Beta) · October 2026</h2>
+<p><strong>Fixtock</strong> is the first public beta of a business operations and intelligence app from Reedstem LLC. It brings inventory, sales, customers, expenses and real-time profit into one app, for every store, every seller and every sale.</p>
+<p>This beta is for early business users on <strong>Android (Google Play)</strong> and <strong>iOS (TestFlight)</strong>. Thank you for helping us shape Fixtock. Your feedback goes straight into the next release.</p>
+<hr />
+<h2>Highlights</h2>
+<ul>
+<li><strong>Insights home:</strong> revenue, net result, gross margin and "where revenue went", over the last 14 days.</li>
+<li><strong>Daily sales:</strong> today's total, sales by hour, performance by seller, discounts given and every sale record.</li>
+<li><strong>Full inventory control:</strong> products, variants, batches, expiry, costs, prices and margins across multiple stores.</li>
+<li><strong>Stock audits and transfers:</strong> count the shelf, fix differences with a reason, and move stock between stores.</li>
+<li><strong>Customers and balances:</strong> unique Customer IDs (CID), receivables, deposits and refunds, settled correctly.</li>
+<li><strong>Financial events:</strong> record expenses, interest and tax, and see clean statements.</li>
+<li><strong>AI business intelligence:</strong> plain-language summaries and next steps from your own numbers.</li>
+<li><strong>Teams:</strong> invite staff with roles (Owner, Admin, Editor, Viewer). Every action is recorded.</li>
+</ul>
+<hr />
+<h2>What's included</h2>
+<h3>Insights and reporting</h3>
+<ul>
+<li><strong>Overview</strong> of the last 14 days:</li>
+<li>revenue with a day-by-day chart (this week against last);</li>
+<li>net result and gross margin;</li>
+<li>a "Where revenue went" breakdown (cost of goods, operating expenses, net).</li>
+<li><strong>Key numbers:</strong> transactions, average sale, items sold, gross profit and operating expenses, with arrows comparing the last 7 days to the previous 7.</li>
+<li><strong>Today</strong> tab for the current day, and <strong>Intelligence</strong> tab for AI summaries.</li>
+<li><strong>Daily Sales:</strong></li>
+<li>totals, sales count, items, average sale, number of sellers and discounts given;</li>
+<li>sales by hour, with your busiest hour highlighted;</li>
+<li>a seller leaderboard with each seller's share of the day;</li>
+<li>a sales record list you can filter by seller.</li>
+<li>Every figure follows your company's <strong>currency and time zone</strong>.</li>
+<li>Large numbers use thousands separators and shrink to fit on small screens.</li>
+</ul>
+<h3>Inventory</h3>
+<ul>
+<li><strong>Products and variants</strong>, with stock tracked per batch, expiry date and store.</li>
+<li><strong>Add stock</strong> with cost price, selling price, tax rate and a live margin and profit-per-unit preview.</li>
+<li><strong>Stock details</strong> for each item: quantities, value, price history and activity.</li>
+<li><strong>Edit stock:</strong></li>
+<li>selling price and tax rate, with margin and profit recalculated live;</li>
+<li>a warning when you sell below cost;</li>
+<li>low-stock alert level, batch number and expiry date;</li>
+<li>supplier contact.</li>
+<li><strong>Promo pricing calculator</strong> for "Buy A, get B free" supplier deals:</li>
+<li>shows what each unit really costs;</li>
+<li>sets a price by target margin or by price;</li>
+<li>quick margin buttons;</li>
+<li>before → after confirmation.</li>
+<li><strong>Archived stock</strong>, kept out of the way but never lost.</li>
+<li>Plan-based stock-item limits are checked on the server.</li>
+</ul>
+<h3>Stock audits and adjustments</h3>
+<ul>
+<li><strong>Count stock:</strong> enter the shelf count, see the difference from the app and resolve it.</li>
+<li><strong>Adjust stock</strong> with clear reasons grouped by direction (for example damage, expiry, theft, found stock). A reason is always required.</li>
+<li>A <strong>full audit trail</strong> of who changed what, when, and why.</li>
+</ul>
+<h3>Multi-store</h3>
+<ul>
+<li>Add <strong>stores and locations</strong> and see figures per store or for the whole business.</li>
+<li><strong>Send stock</strong> to another store with quick-quantity chips and a preview before sending.</li>
+<li><strong>Request stock</strong> from another store.</li>
+</ul>
+<h3>Sales</h3>
+<ul>
+<li>Fast sale recording with <strong>discounts</strong>, timed and linked to the seller.</li>
+<li><strong>Returns</strong>, with the items to return clearly listed.</li>
+<li>Sale amounts are worked out in whole cents, so totals and margins are exact.</li>
+</ul>
+<h3>Customers (Partners)</h3>
+<ul>
+<li>Customer profiles with a <strong>unique Customer ID (CID)</strong>, name, phone, email and status (active or inactive).</li>
+<li>Phone numbers, emails and CIDs are <strong>unique within your company</strong>, so you can't create duplicate customers.</li>
+<li><strong>Search</strong> customers by name, phone, email or CID.</li>
+<li><strong>Receivables:</strong> what each customer owes, with collection that can never take more than is owed.</li>
+<li><strong>Deposits and refunds,</strong> with refunds limited to the money actually available.</li>
+</ul>
+<h3>Finance</h3>
+<ul>
+<li><strong>Financial event sheet</strong> to record operating expenses, interest, tax and other events. A live preview shows the effect before you save, and a receipt view follows.</li>
+<li><strong>Statements and transactions,</strong> showing how your money moved over any period.</li>
+<li>Margin is shown the same way everywhere: (selling price − cost) ÷ selling price.</li>
+</ul>
+<h3>AI business intelligence</h3>
+<ul>
+<li><strong>AI summaries, insights and answers</strong> drawn from your company's own data, with practical next steps.</li>
+<li>Conversations are saved in your workspace, so you can come back to them.</li>
+</ul>
+<blockquote>
+<p>AI output can be wrong. Always check important figures before acting on them.</p>
+</blockquote>
+<h3>Team and permissions</h3>
+<ul>
+<li><strong>Invite members</strong> to your company and give each one a role.</li>
+<li><strong>Owner</strong> has full control. <strong>Admin</strong>, <strong>Editor</strong> and <strong>Viewer</strong> have progressively less access.</li>
+<li><strong>Members</strong> screen to manage roles, suspend access or remove someone.</li>
+<li>Every action is linked to the person who took it.</li>
+</ul>
+<h3>Account and security</h3>
+<ul>
+<li><strong>Registration</strong> in four steps, with email verification and optional phone verification.</li>
+<li><strong>Profile &amp; security</strong> in one place: name, photo, email change (verified by code), phone and password.</li>
+<li><strong>Password reset</strong> by email or phone number, with a cooldown to prevent abuse.</li>
+<li><strong>Several companies</strong> under one login, with a screen to choose between them.</li>
+<li>Server-side rate limiting, disposable email blocking and per-company data separation.</li>
+</ul>
+<h3>Subscriptions</h3>
+<ul>
+<li><strong>Free</strong> plan to get started. <strong>Lite</strong>, <strong>Pro</strong> and <strong>Enterprise</strong> plans add more stores, stock items and features.</li>
+<li>Billed through the <strong>App Store</strong> or <strong>Google Play</strong>. You can manage or cancel there at any time.</li>
+<li>Each subscription belongs to the company it was bought for.</li>
+</ul>
+<h3>Notifications</h3>
+<ul>
+<li>In-app notification centre with an unread badge, for important stock, team and account events.</li>
+</ul>
+<h3>Legal and privacy</h3>
+<ul>
+<li>New <strong>End-User License Agreement</strong>, <strong>Terms &amp; Conditions</strong> and <strong>Data &amp; Privacy Policy</strong>.</li>
+<li>You can read them in the app, section by section, each with a plain-language "In short" summary.</li>
+<li>Each one can be downloaded as a PDF.</li>
+<li>Accepting them is part of creating an account, and your acceptance is securely recorded.</li>
+<li>When the agreements change, you'll be asked to review and accept the new version.</li>
+</ul>
+<h3>Design and usability</h3>
+<ul>
+<li>A consistent, modern design across every screen: clear section headers, large touch targets and an icon on every action.</li>
+<li><strong>Loading skeletons</strong> instead of spinners.</li>
+<li><strong>Duplicate-tap protection</strong> on every save, send and payment action. Buttons grey out while working.</li>
+<li>Friendly error messages in place of technical codes.</li>
+<li>A new, <strong>bolder app icon</strong> that's easier to spot on your home screen.</li>
+</ul>
+<hr />
+<h2>Fixed in this release</h2>
+<ul>
+<li><strong>Stock editing</strong></li>
+<li>Edit stock no longer shows the previous item's values when you open a different item.</li>
+<li>Batch numbers keep "-" and "/", and addresses keep commas and full stops.</li>
+<li>A supplier phone number can now be cleared.</li>
+<li><strong>Promo pricing</strong></li>
+<li>The calculator no longer crashes when an item's cost is missing.</li>
+<li>It no longer writes "Waiting…" into the margin field.</li>
+<li>"Buy 0" no longer gives a zero cost.</li>
+<li><strong>Customers</strong></li>
+<li>Collecting from a customer can no longer exceed what they owe.</li>
+<li>Refunds can no longer exceed the money available.</li>
+<li><strong>Registration and sign-in</strong></li>
+<li>Validation could be skipped by swiping between registration steps.</li>
+<li>If an account was created but sign-in failed, you now see "Account created, sign in to continue" instead of an error.</li>
+<li>Password reset now catches invalid phone numbers, and its countdown updates live.</li>
+<li><strong>General</strong></li>
+<li>Several screens could show out-of-date figures after changes. They now refresh immediately.</li>
+<li>Raw technical errors are no longer shown. Every error now explains what to do next.</li>
+</ul>
+<hr />
+<h2>Known limitations (beta)</h2>
+<ul>
+<li><strong>Account deletion:</strong> for now, email support@fixtock.com from your account email. In-app deletion is coming in a future update.</li>
+<li><strong>Internet connection:</strong> saving, syncing and reports need a connection. Entries made on a poor connection may be delayed, so confirm important entries have saved.</li>
+<li><strong>AI summaries</strong> can take a few seconds, and may be unavailable if the AI service is busy.</li>
+<li>Some figures from before an update may need a few moments to recalculate.</li>
+<li>Features and plan limits may change during the beta.</li>
+</ul>
+<hr />
+<h2>Coming next</h2>
+<ul>
+<li>In-app account deletion and data export.</li>
+<li>A dedicated features page and in-app guides.</li>
+<li>More reports and export options.</li>
+<li>Performance improvements for large inventories.</li>
+</ul>
+<hr />
+<h2>Feedback and support</h2>
+<p>Tell us what works, what doesn't, and what you'd like next:</p>
+<ul>
+<li><strong>Email:</strong> support@fixtock.com</li>
+<li><strong>TestFlight (iOS):</strong> take a screenshot in the app and tap "Share Beta Feedback".</li>
+<li><strong>Google Play:</strong> use "Send feedback" on the Fixtock listing in the testing programme.</li>
+</ul>
+<p>When you report a problem, please include your phone model, what you tapped, and a screenshot if you can.</p>
+<hr />
+<p><em>Fixtock is a product of Reedstem LLC, Aurora, Colorado, USA.</em>
+<em><a href="https://fixtock.com/legal/privacy.html">Privacy Policy</a> · <a href="https://fixtock.com/legal/terms.html">Terms &amp; Conditions</a> · <a href="https://fixtock.com/legal/eula.html">License Agreement</a></em></p></article></main>
+<footer>© 2026 Reedstem LLC · <a href="mailto:support@fixtock.com">support@fixtock.com</a></footer></body></html>
