@@ -2,6 +2,1375 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Fixtock: Inventory, sales and business intelligence for growing businesses</title>
+  <meta name="description" content="Fixtock brings inventory, sales, expenses and real-time financial insight into one app, for every store, every seller and every sale. In 178 countries, in any currency, on iPhone, iPad, Android and the web." />
+  <meta name="theme-color" content="#1E2A78" />
+  <link rel="canonical" href="https://fixtock.com/" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta name="apple-itunes-app" content="app-id=6767768079" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Fixtock" />
+  <meta property="og:title" content="Fixtock: Know your business, down to the last item" />
+  <meta property="og:description" content="Inventory, sales, expenses and real-time financial insight, in one app. On iPhone, iPad, Android and the web." />
+  <meta property="og:image" content="https://fixtock.com/assets/og-image.png" />
+  <meta property="og:url" content="https://fixtock.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/screens/iphone/01-overview-dollar-sm.webp" type="image/webp" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Fixtock",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "iOS, iPadOS, Android, Web",
+  "description": "Inventory, sales, expense tracking and business intelligence for growing businesses.",
+  "url": "https://fixtock.com/",
+  "downloadUrl": [
+    "https://apps.apple.com/us/app/fixtock/id6767768079",
+    "https://play.google.com/store/apps/details?id=com.reedstem.fixtock&hl=en_US"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "description": "Free plan; paid plans available"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Reedstem LLC",
+    "email": "support@fixtock.com"
+  },
+  "sameAs": [
+    "https://apps.apple.com/us/app/fixtock/id6767768079",
+    "https://play.google.com/store/apps/details?id=com.reedstem.fixtock&hl=en_US"
+  ]
+}
+  </script>
+
+  <style>
+    :root {
+      --brand: #2F6BFF; --brand-2: #3FA0F0; --indigo: #2B3A9E; --navy: #0B1437; --navy-2: #13205A;
+      --teal: #0E9F8A; --green: #16A34A; --amber: #F59E0B; --violet: #7C4DCC;
+      --bg: #FFFFFF; --bg-soft: #F5F7FC; --card: #FFFFFF; --ink: #0B1437; --body: #3B4767; --muted: #6A7591; --line: #E3E8F3;
+      --shadow: 0 1px 2px rgba(11,20,55,.06), 0 12px 32px rgba(11,20,55,.08);
+      --radius: 20px; --ease: cubic-bezier(.2,.7,.2,1);
+      color-scheme: light;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #070C22; --bg-soft: #0B1230; --card: #0F1838; --ink: #EEF2FF; --body: #B9C3DD; --muted: #8792B0; --line: #1D2850;
+        --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px rgba(0,0,0,.35); color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #070C22; --bg-soft: #0B1230; --card: #0F1838; --ink: #EEF2FF; --body: #B9C3DD; --muted: #8792B0; --line: #1D2850;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 16px 40px rgba(0,0,0,.35); color-scheme: dark;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
+    body { margin: 0; background: var(--bg); color: var(--body); font: 16px/1.6 "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    h1, h2, h3 { color: var(--ink); margin: 0; letter-spacing: -0.02em; }
+    p { margin: 0; }
+    button { font: inherit; color: inherit; }
+    .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+    :focus-visible { outline: 3px solid var(--brand-2); outline-offset: 3px; border-radius: 8px; }
+    .skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--brand); color: #fff; padding: 10px 14px; border-radius: 10px; text-decoration: none; font-weight: 700; }
+    .skip:focus { top: 12px; }
+
+    /* ── progress bar ── */
+    .progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 60; transform-origin: 0 50%; transform: scaleX(0); background: linear-gradient(90deg, var(--brand-2), #5EE2A0); }
+
+    /* ── buttons & badges ── */
+    .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 14px; font-weight: 700; font-size: 15px; text-decoration: none; border: 0; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease, background .15s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--brand); color: #fff; box-shadow: 0 8px 24px rgba(47,107,255,.35); }
+    .btn-primary:hover { box-shadow: 0 12px 30px rgba(47,107,255,.45); }
+    .btn-ghost { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.26); }
+    .btn-ghost:hover { background: rgba(255,255,255,.14); }
+    .btn-line { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+    .btn-line:hover { border-color: var(--brand); color: var(--brand); }
+    .btn svg { width: 20px; height: 20px; flex: none; }
+    .store { display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 18px 8px 14px; border-radius: 14px; background: #fff; color: var(--navy); text-decoration: none; box-shadow: 0 8px 24px rgba(0,0,0,.18); border: 1px solid rgba(255,255,255,.6); transition: transform .15s ease, box-shadow .15s ease; }
+    .store:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,0,.24); }
+    .store svg { width: 26px; height: 26px; flex: none; }
+    .store small { display: block; font-size: 11px; font-weight: 600; color: #5B6788; line-height: 1.1; text-transform: uppercase; letter-spacing: .06em; }
+    .store b { display: block; font-size: 16px; line-height: 1.25; }
+
+    /* ── nav ── */
+    .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background .25s ease, border-color .25s; border-bottom: 1px solid transparent; }
+    .nav.solid { background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom-color: var(--line); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; font-size: 20px; letter-spacing: -0.02em; color: #fff; }
+    .nav.solid .logo { color: var(--ink); }
+    .logo img { width: 36px; height: 36px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,.2); }
+    .links { display: flex; align-items: center; gap: 2px; }
+    .links a { text-decoration: none; font-weight: 600; font-size: 15px; color: rgba(255,255,255,.85); padding: 10px 11px; border-radius: 10px; }
+    .links a:hover, .links a.cur { color: #fff; background: rgba(255,255,255,.1); }
+    .nav.solid .links a { color: var(--body); }
+    .nav.solid .links a:hover, .nav.solid .links a.cur { color: var(--ink); background: var(--bg-soft); }
+    .links .btn { color: #fff !important; min-height: 44px; padding: 0 18px; margin-left: 8px; background: var(--brand) !important; }
+    .menu-btn { display: none; width: 48px; height: 48px; border-radius: 12px; border: 1px solid rgba(255,255,255,.25); background: transparent; color: #fff; cursor: pointer; }
+    .nav.solid .menu-btn { color: var(--ink); border-color: var(--line); }
+    .menu-btn svg { width: 22px; height: 22px; }
+
+    /* ── hero ── */
+    .hero { position: relative; isolation: isolate; color: #fff; overflow: hidden; padding: 128px 0 0;
+      background: radial-gradient(900px 500px at 85% 10%, rgba(63,160,240,.45), transparent 60%), radial-gradient(700px 500px at 0% 100%, rgba(124,77,204,.35), transparent 60%), linear-gradient(160deg, #0B1437 0%, #1E2A78 55%, #2B4FC8 100%); }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .5;
+      background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 30%, transparent 75%); }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding-bottom: 90px; }
+    .hero-copy { position: relative; z-index: 4; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,.9); }
+    .eyebrow i { font-style: normal; background: linear-gradient(90deg, #5EE2A0, #3FA0F0); color: #08122F; font-weight: 800; font-size: 11.5px; padding: 3px 9px; border-radius: 999px; letter-spacing: .04em; }
+    .hero h1 { color: #fff; font-size: clamp(38px, 4.6vw, 58px); line-height: 1.04; font-weight: 900; margin: 22px 0 20px; letter-spacing: -0.035em; }
+    .grad { background: linear-gradient(90deg, #8FD3FF, #5EE2A0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero .lead { font-size: clamp(17px, 1.6vw, 19.5px); color: rgba(235,241,255,.82); max-width: 560px; line-height: 1.6; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .ticks { display: flex; flex-wrap: wrap; gap: 10px 22px; margin: 30px 0 0; padding: 0; list-style: none; font-size: 14px; font-weight: 600; color: rgba(235,241,255,.88); }
+    .ticks li { display: inline-flex; align-items: center; gap: 8px; }
+    .ticks svg { width: 18px; height: 18px; color: #5EE2A0; }
+    .platforms { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 18px; font-size: 13.5px; color: rgba(235,241,255,.7); }
+    .platforms span { display: inline-flex; align-items: center; gap: 6px; }
+    .platforms svg { width: 16px; height: 16px; }
+
+    .phones { position: relative; height: 640px; }
+    .phone { position: absolute; width: 300px; border-radius: 44px; padding: 9px; background: linear-gradient(145deg, #2A3354, #0A0F24); box-shadow: 0 40px 80px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.12); }
+    .phone > img, .phone .screen { border-radius: 36px; width: 100%; height: auto; }
+    .phone.front { right: 12%; top: 0; z-index: 2; animation: float 7s ease-in-out infinite; }
+    .phone.back { right: 44%; top: 90px; transform: rotate(-6deg); opacity: .96; animation: float2 8s ease-in-out infinite; }
+    .chip { position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.96); color: var(--navy); box-shadow: 0 20px 40px rgba(0,0,0,.25); font-size: 13px; font-weight: 600; }
+    .chip b { display: block; font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
+    .chip .dot { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; flex: none; }
+    .chip .dot svg { width: 20px; height: 20px; }
+    .chip.c1 { left: -4%; top: 64px; }
+    .chip.c2 { right: 0; bottom: 120px; }
+    @keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
+    @keyframes float2 { 0%,100% { transform: rotate(-6deg) translateY(0) } 50% { transform: rotate(-6deg) translateY(10px) } }
+    .hero-fade { height: 120px; background: linear-gradient(to bottom, transparent, var(--bg)); margin-top: -120px; position: relative; z-index: 1; }
+
+    /* ── value strip ── */
+    .strip { margin-top: -10px; position: relative; z-index: 2; }
+    .strip-grid { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .strip-grid div { padding: 24px; border-right: 1px solid var(--line); }
+    .strip-grid div:last-child { border-right: 0; }
+    .strip-grid b { display: block; color: var(--ink); font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+    .strip-grid span { font-size: 14px; color: var(--muted); }
+
+    /* ── sections ── */
+    section { padding: 110px 0; }
+    .kicker { display: inline-block; font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin-bottom: 14px; }
+    .h2 { font-size: clamp(30px, 3.6vw, 46px); line-height: 1.1; font-weight: 900; letter-spacing: -0.03em; }
+    .sub { font-size: 18px; color: var(--body); margin-top: 16px; max-width: 640px; }
+    .center { text-align: center; }
+    .center .sub { margin-left: auto; margin-right: auto; }
+    .bg-soft { background: var(--bg-soft); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .t-blue { background: rgba(47,107,255,.1); color: var(--brand); }
+    .t-teal { background: rgba(14,159,138,.12); color: var(--teal); }
+    .t-green { background: rgba(22,163,74,.12); color: var(--green); }
+    .t-amber { background: rgba(245,158,11,.14); color: #C27803; }
+    .t-violet { background: rgba(124,77,204,.12); color: var(--violet); }
+    .t-red { background: rgba(225,29,72,.1); color: #E11D48; }
+    .t-indigo { background: rgba(43,58,158,.12); color: #5865DB; }
+    .t-sky { background: rgba(63,160,240,.14); color: #1E88D8; }
+
+    /* zoomable screenshots */
+    img.zoom { cursor: zoom-in; }
+
+    /* ── segmented control ── */
+    .seg { display: inline-flex; gap: 4px; padding: 5px; border-radius: 16px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); max-width: 100%; overflow-x: auto; }
+    .seg button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 0; border-radius: 12px; background: transparent; cursor: pointer; font-weight: 700; font-size: 14.5px; color: var(--body); white-space: nowrap; transition: background .2s, color .2s; }
+    .seg button svg { width: 18px; height: 18px; flex: none; }
+    .seg button i { font-style: normal; }
+    .seg button[aria-selected="true"] { background: var(--brand); color: #fff; box-shadow: 0 6px 16px rgba(47,107,255,.3); }
+
+    /* ── devices ── */
+    .devices-top { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+    .dev-stage { margin-top: 44px; }
+    .dev-panel { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
+    .dev-panel[hidden] { display: none; }
+    .dev-panel.enter { animation: rise .5s var(--ease); }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .dev-media { display: grid; place-items: center; min-height: 420px; padding: 36px 20px; border-radius: 32px; border: 1px solid var(--line);
+      background: radial-gradient(420px 300px at 50% 40%, rgba(47,107,255,.18), transparent 70%), var(--bg-soft); }
+    .dev-media .phone { position: relative; width: min(300px, 74%); animation: none; inset: auto; }
+    .tablet { position: relative; border-radius: 30px; padding: 12px; background: linear-gradient(145deg, #2A3354, #0A0F24); box-shadow: 0 30px 60px rgba(11,20,55,.3), inset 0 0 0 1px rgba(255,255,255,.12); }
+    .tablet img { border-radius: 19px; width: 100%; height: auto; }
+    .dev-media .tablet { width: 100%; max-width: 620px; }
+    .browser { width: 100%; max-width: 720px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--card); box-shadow: 0 30px 60px rgba(11,20,55,.22); }
+    .browser .bar { display: flex; align-items: center; gap: 7px; height: 40px; padding: 0 14px; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+    .browser .bar i { width: 11px; height: 11px; border-radius: 50%; background: #FF5F57; }
+    .browser .bar i:nth-child(2) { background: #FEBC2E; } .browser .bar i:nth-child(3) { background: #28C840; }
+    .browser .url { margin-left: 12px; flex: 1; max-width: 340px; height: 26px; border-radius: 8px; background: var(--card); border: 1px solid var(--line); font-size: 12.5px; color: var(--muted); display: flex; align-items: center; gap: 6px; padding: 0 10px; }
+    .browser .url svg { width: 13px; height: 13px; color: var(--green); }
+    .browser img { width: 100%; height: auto; background: var(--bg-soft); }
+    .dev-copy h3 { font-size: 26px; font-weight: 900; letter-spacing: -0.02em; }
+    .dev-copy > p { margin-top: 12px; font-size: 16.5px; }
+    .checks { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
+    .checks li { display: flex; gap: 10px; align-items: flex-start; font-size: 15.5px; }
+    .checks svg { width: 20px; height: 20px; flex: none; color: var(--green); margin-top: 2px; }
+    .dev-copy .hero-cta { margin-top: 26px; }
+    .dev-copy .store { box-shadow: var(--shadow); border-color: var(--line); }
+    .sync { margin: 40px auto 0; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 14.5px; color: var(--muted); text-align: center; }
+    .sync b { color: var(--ink); }
+    .sync .live { width: 9px; height: 9px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(22,163,74,.6); animation: ping 2s infinite; flex: none; }
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(22,163,74,.55); } 80%,100% { box-shadow: 0 0 0 10px rgba(22,163,74,0); } }
+
+    /* ── tour ── */
+    .tour { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: 64px; align-items: start; margin-top: 56px; }
+    .tour-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .tour-group { font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding: 14px 4px 2px; }
+    .tour-group:first-child { padding-top: 0; }
+    .tour-item { border-radius: 18px; border: 1px solid transparent; transition: background .25s, border-color .25s, box-shadow .25s; }
+    .tour-item.on { background: var(--card); border-color: var(--line); box-shadow: var(--shadow); }
+    .tour-item > button { position: relative; width: 100%; display: grid; grid-template-columns: 42px 1fr; gap: 14px; align-items: center; text-align: left; padding: 12px 14px; border: 0; background: transparent; cursor: pointer; border-radius: 18px; overflow: hidden; }
+    .tour-item:not(.on) > button:hover { background: color-mix(in srgb, var(--card) 70%, transparent); }
+    .tour-item .ic { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; }
+    .tour-item .ic svg { width: 21px; height: 21px; }
+    .tt b { display: block; color: var(--ink); font-size: 16px; font-weight: 800; }
+    .tt span { display: block; font-size: 14px; color: var(--muted); line-height: 1.4; }
+    .tour-item .bar { position: absolute; left: 14px; right: 14px; bottom: 0; height: 3px; border-radius: 3px; background: var(--brand); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); opacity: 0; }
+    .tour-item.on .bar { opacity: 1; }
+    .more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .35s var(--ease); }
+    .more > ul { overflow: hidden; list-style: none; margin: 0; padding: 0 16px 0 70px; display: grid; gap: 8px; }
+    .tour-item.on .more { grid-template-rows: 1fr; }
+    .tour-item.on .more > ul { padding-bottom: 16px; }
+    .more li { display: flex; gap: 8px; font-size: 14.5px; color: var(--body); }
+    .more li svg { width: 17px; height: 17px; flex: none; color: var(--green); margin-top: 3px; }
+    .tour-side { position: sticky; top: 96px; }
+    .tour-stage { position: relative; margin: 0 auto; width: 100%; max-width: 340px; border-radius: 48px; padding: 10px; background: linear-gradient(145deg, #2A3354, #0A0F24); box-shadow: 0 40px 80px rgba(11,20,55,.35), inset 0 0 0 1px rgba(255,255,255,.12); }
+    .tour-stage .screen { position: relative; aspect-ratio: 600 / 1304; border-radius: 38px; overflow: hidden; background: #0A0F24; }
+    .tour-stage .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.02); transition: opacity .5s ease, transform .6s var(--ease); }
+    .tour-stage .screen img.on { opacity: 1; transform: none; }
+    .tour-stage .screen img:not(.on), .cur-media .screen img:not(.on) { pointer-events: none; }
+    .tour-stage .screen img.on, .cur-media .screen img.on { z-index: 1; }
+    .tour-ctl { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; }
+    .round { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; transition: border-color .2s, color .2s; }
+    .round:hover { border-color: var(--brand); color: var(--brand); }
+    .round svg { width: 20px; height: 20px; }
+    .tour-count { min-width: 64px; text-align: center; font-weight: 700; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .hint { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 10px; font-size: 13px; color: var(--muted); }
+    .hint svg { width: 15px; height: 15px; }
+
+    /* ── currency ── */
+    .cur { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .cur-media { display: grid; place-items: center; gap: 22px; padding: 40px 20px; border-radius: 32px; border: 1px solid var(--line);
+      background: radial-gradient(420px 300px at 50% 40%, rgba(14,159,138,.2), transparent 70%), var(--bg-soft); }
+    .cur-media .phone { position: relative; inset: auto; width: min(300px, 74%); animation: none; }
+    .cur-media .screen { position: relative; aspect-ratio: 600 / 1304; overflow: hidden; }
+    .cur-media .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .45s ease; }
+    .cur-media .screen img.on { opacity: 1; }
+    .pills { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .pills li { padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 14px; font-weight: 600; color: var(--ink); }
+
+    /* ── iPad gallery ── */
+    .gal-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .gal-ctl { display: flex; gap: 10px; }
+    .rail { margin-top: 44px; display: grid; grid-auto-flow: column; grid-auto-columns: min(880px, 86%); gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 7%; padding: 8px 7% 26px; scrollbar-width: none; overscroll-behavior-x: contain; }
+    .rail::-webkit-scrollbar { display: none; }
+    .slide { margin: 0; scroll-snap-align: center; transition: opacity .35s, transform .35s var(--ease); opacity: .55; transform: scale(.96); }
+    .slide.on { opacity: 1; transform: none; }
+    .slide figcaption { margin-top: 18px; text-align: center; }
+    .slide figcaption b { display: block; color: var(--ink); font-size: 18px; font-weight: 800; }
+    .slide figcaption span { display: block; color: var(--body); font-size: 15px; max-width: 560px; margin: 4px auto 0; }
+    .dots { display: flex; justify-content: center; gap: 8px; margin-top: 4px; }
+    .dots .dot { width: 10px; height: 10px; padding: 0; border: 0; border-radius: 999px; background: var(--line); cursor: pointer; transition: width .3s var(--ease), background .3s; position: relative; }
+    .dots .dot::before { content: ""; position: absolute; inset: -12px -4px; }
+    .dots .dot.on { width: 30px; background: var(--brand); }
+
+    /* ── web ── */
+    .web { display: grid; grid-template-columns: 1fr 1.25fr; gap: 64px; align-items: center; }
+    .web-media { display: grid; gap: 16px; }
+    .web-media .browser { max-width: none; }
+    #webMain { transition: opacity .25s ease; }
+    .wthumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .wthumb { padding: 6px; border-radius: 14px; border: 1px solid var(--line); background: var(--card); cursor: pointer; text-align: left; transition: border-color .2s, box-shadow .2s; }
+    .wthumb img { width: 100%; height: auto; aspect-ratio: 1600 / 928; object-fit: cover; object-position: top; border-radius: 9px; background: var(--bg-soft); }
+    .wthumb span { display: block; padding: 6px 4px 2px; font-size: 13.5px; font-weight: 700; color: var(--ink); }
+    .wthumb.on { border-color: var(--brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 22%, transparent); }
+    .web-copy .btn { margin-top: 28px; }
+
+    /* ── features ── */
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 56px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 22px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s; }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: color-mix(in srgb, var(--brand) 30%, var(--line)); }
+    .card .ic { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 18px; }
+    .card .ic svg { width: 23px; height: 23px; }
+    .card h3 { font-size: 17.5px; font-weight: 800; margin-bottom: 8px; }
+    .card p { font-size: 14.5px; line-height: 1.55; }
+    .who { margin-top: 56px; text-align: center; }
+    .who p { font-size: 14px; font-weight: 700; color: var(--muted); letter-spacing: .04em; }
+    .who .pills { justify-content: center; margin-top: 14px; }
+
+    /* ── steps ── */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 56px; counter-reset: s; }
+    .step { position: relative; padding: 30px 26px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); }
+    .step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo), var(--brand-2)); color: #fff; font-weight: 900; margin-bottom: 18px; }
+    .step h3 { font-size: 19px; font-weight: 800; margin-bottom: 8px; }
+
+    /* ── trust ── */
+    .trust { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; padding: 56px; border-radius: 32px; color: #fff;
+      background: radial-gradient(600px 400px at 100% 0%, rgba(63,160,240,.35), transparent 60%), linear-gradient(150deg, #0B1437, #1E2A78); box-shadow: 0 30px 60px rgba(11,20,55,.25); }
+    .trust .h2 { color: #fff; }
+    .trust .sub { color: rgba(235,241,255,.8); }
+    .trust .kicker { color: #8FD3FF; }
+    .trust ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+    .trust li { display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); font-size: 15px; color: rgba(235,241,255,.9); }
+    .trust li svg { width: 22px; height: 22px; flex: none; color: #5EE2A0; margin-top: 1px; }
+    .trust li b { color: #fff; }
+    .legal-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .legal-links a { color: #fff; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,.22); min-height: 44px; display: inline-flex; align-items: center; gap: 8px; }
+    .legal-links a:hover { background: rgba(255,255,255,.08); }
+
+    /* ── faq ── */
+    .faq { max-width: 820px; margin: 48px auto 0; display: grid; gap: 12px; }
+    details { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 0 22px; }
+    details[open] { box-shadow: var(--shadow); }
+    summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 64px; font-weight: 700; color: var(--ink); font-size: 16.5px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; font-size: 24px; font-weight: 400; color: var(--brand); transition: transform .2s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { padding: 0 0 20px; font-size: 15.5px; }
+    details a { color: var(--brand); }
+
+    /* ── final cta ── */
+    .final { text-align: center; padding: 72px 24px; border-radius: 32px; background: linear-gradient(135deg, var(--indigo), var(--brand) 60%, var(--brand-2)); color: #fff; position: relative; overflow: hidden; }
+    .final::after { content: ""; position: absolute; inset: auto -10% -60% -10%; height: 120%; background: radial-gradient(closest-side, rgba(255,255,255,.18), transparent); pointer-events: none; }
+    .final .h2 { color: #fff; }
+    .final .sub { color: rgba(255,255,255,.86); margin: 14px auto 0; }
+    .final .hero-cta { justify-content: center; position: relative; z-index: 1; }
+    .final img { width: 72px; height: 72px; border-radius: 18px; margin: 0 auto 22px; box-shadow: 0 16px 32px rgba(0,0,0,.25); }
+
+    /* ── footer ── */
+    footer { padding: 64px 0 40px; border-top: 1px solid var(--line); margin-top: 110px; }
+    .foot { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+    .foot .logo { color: var(--ink); }
+    .foot p { font-size: 14.5px; color: var(--muted); margin-top: 14px; max-width: 320px; }
+    .foot h4 { margin: 4px 0 14px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink); }
+    .foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+    .foot ul a { text-decoration: none; color: var(--body); font-size: 15px; display: inline-block; padding: 6px 0; }
+    .foot ul a:hover { color: var(--brand); }
+    .legal-line { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--muted); }
+
+    /* ── mobile sticky CTA ── */
+    .dock { display: none; }
+
+    /* ── lightbox ── */
+    dialog.lb { width: 100vw; max-width: 100vw; height: 100dvh; max-height: 100dvh; margin: 0; padding: 0; border: 0; background: rgba(5,9,26,.92); color: #fff; }
+    dialog.lb::backdrop { background: rgba(5,9,26,.6); backdrop-filter: blur(4px); }
+    dialog.lb[open] { display: grid; grid-template-rows: 1fr auto; animation: fade .25s ease; }
+    @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+    .lb-fig { margin: 0; display: grid; place-items: center; padding: 64px 72px 12px; min-height: 0; }
+    .lb-fig img { max-width: 100%; max-height: calc(100dvh - 170px); width: auto; height: auto; border-radius: 18px; box-shadow: 0 30px 80px rgba(0,0,0,.5); object-fit: contain; }
+    .lb-cap { padding: 10px 20px 22px; text-align: center; }
+    .lb-cap b { display: block; font-size: 16px; }
+    .lb-cap code { display: inline-block; margin-top: 6px; font: 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; color: rgba(235,241,255,.6); }
+    .lb .round { position: absolute; background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); color: #fff; }
+    .lb .round:hover { background: rgba(255,255,255,.16); color: #fff; }
+    .lb-x { top: 14px; right: 14px; }
+    .lb-p { left: 16px; top: 50%; transform: translateY(-50%); }
+    .lb-n { right: 16px; top: 50%; transform: translateY(-50%); }
+    .lb-count { position: absolute; top: 24px; left: 20px; font-size: 13.5px; font-weight: 700; color: rgba(235,241,255,.7); }
+
+    /* ── reveal ── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .no-js .reveal { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 1100px) {
+      .links a.opt { display: none; }
+    }
+    @media (max-width: 1040px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .phones { height: 560px; }
+      .phone { width: 260px; }
+      .tour { grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; }
+    }
+    @media (max-width: 900px) {
+      .hero { padding-top: 112px; }
+      .hero-grid, .trust, .dev-panel, .cur, .web { grid-template-columns: 1fr; }
+      .hero-copy { text-align: center; }
+      .hero .lead { margin: 0 auto; }
+      .hero-cta, .ticks, .platforms { justify-content: center; }
+      .phones { height: 560px; max-width: 520px; margin: 10px auto 0; width: 100%; }
+      .phone.front { right: 8%; }
+      .phone.back { right: auto; left: 4%; }
+      .strip-grid { grid-template-columns: repeat(2, 1fr); }
+      .strip-grid div:nth-child(2) { border-right: 0; }
+      .strip-grid div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .steps { grid-template-columns: 1fr; }
+      .trust { padding: 36px 24px; }
+      .foot { grid-template-columns: 1fr 1fr; }
+      .links { display: none; }
+      .links.open { display: flex; flex-direction: column; align-items: stretch; position: absolute; top: 72px; left: 12px; right: 12px; padding: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
+      .links.open a, .links.open a.opt { display: block; color: var(--ink) !important; padding: 14px; }
+      .links.open .btn { margin: 6px 0 0; justify-content: center; display: flex; }
+      .menu-btn { display: inline-grid; place-items: center; }
+      section { padding: 80px 0; }
+      .dev-panel { gap: 32px; }
+      .dev-media { min-height: 0; }
+      .cur { gap: 40px; }
+      .web { gap: 36px; }
+      .web-media { order: -1; }
+      /* tour: phone on top, list below */
+      .tour { grid-template-columns: 1fr; gap: 28px; margin-top: 40px; }
+      .tour-side { position: static; order: -1; }
+      .tour-stage { max-width: 290px; }
+      .rail { grid-auto-columns: 88%; gap: 16px; padding: 8px 6% 22px; scroll-padding: 0 6%; }
+      .dock { display: flex; position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); z-index: 40; gap: 8px; padding: 8px; border-radius: 18px; background: color-mix(in srgb, var(--card) 92%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid var(--line); box-shadow: 0 16px 40px rgba(11,20,55,.22); transform: translateY(150%); transition: transform .35s var(--ease); }
+      .dock.show { transform: none; }
+      .dock a { flex: 1; min-height: 46px; display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 14.5px; }
+      .dock a svg { width: 18px; height: 18px; }
+      .dock .get { background: var(--brand); color: #fff; }
+      .dock .web-a { color: var(--ink); border: 1px solid var(--line); }
+      .lb-fig { padding: 64px 12px 8px; }
+      .lb-p, .lb-n { top: auto; bottom: 18px; transform: none; }
+      .lb-cap { padding-bottom: 76px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { padding: 0 16px; }
+      .phones { height: 470px; }
+      .phone { width: 210px; border-radius: 34px; padding: 7px; }
+      .phone > img, .phone .screen { border-radius: 28px; }
+      .phone.front { right: 2%; }
+      .phone.back { left: 0; top: 70px; }
+      .chip { font-size: 12px; padding: 10px 12px; }
+      .chip b { font-size: 15px; }
+      .chip .dot { width: 30px; height: 30px; }
+      .chip.c1 { left: 0; top: 18px; }
+      .chip.c2 { right: 0; bottom: 70px; }
+      .grid { grid-template-columns: 1fr; }
+      .strip-grid div { padding: 18px 16px; }
+      .strip-grid b { font-size: 16px; }
+      .hero-grid { padding-bottom: 40px; }
+      .foot { grid-template-columns: 1fr; }
+      .store, .hero-cta .btn { width: 100%; justify-content: center; }
+      .dev-media, .cur-media { padding: 28px 12px; border-radius: 24px; }
+      .seg { width: 100%; }
+      .seg button { flex: 1; justify-content: center; padding: 0 10px; }
+      .seg button .opt { display: none; }
+      .wthumbs { gap: 8px; }
+      .cur-media .seg button { padding: 0 8px; font-size: 13px; }
+      .wthumb span { font-size: 12px; }
+      .more > ul { padding-left: 16px; }
+      .gal-ctl { display: none; }
+    }
+  </style>
+</head>
+<body class="no-js">
+  <a class="skip" href="#top">Skip to content</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <!-- ═══ NAV ═══ -->
+  <header class="nav" id="nav">
+    <div class="wrap">
+      <a class="logo" href="#top" aria-label="Fixtock home">
+        <img src="assets/logo.png" alt="" width="36" height="36" />
+        Fixtock
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <nav class="links" id="links" aria-label="Main">
+        <a href="#tour">Tour</a>
+        <a href="#devices">Devices</a>
+        <a href="#features">Features</a>
+        <a class="opt" href="#security">Security</a>
+        <a class="opt" href="#faq">FAQ</a>
+        <a href="https://app.fixtock.com/login">Sign in</a>
+        <a class="btn btn-primary" href="https://app.fixtock.com/login">Open web app</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ═══ HERO ═══ -->
+    <div class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"><i>NOW LIVE</i> In 178 countries · App Store · Google Play · Web</span>
+          <h1>Know your business,<br /><span class="grad">down to the last item.</span></h1>
+          <p class="lead">
+            Fixtock brings stock, sales, expenses and real-time profit into one beautifully simple app,
+            so you always know what you have, what you sold, who sold it and what you actually earned.
+          </p>
+          <div class="hero-cta">
+            <a class="store" href="https://apps.apple.com/us/app/fixtock/id6767768079" target="_blank" rel="noopener" data-track="app-store" aria-label="Download Fixtock on the App Store">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.7 12.8c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.5-1-2.5-3.9zM14.3 5.6c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.reedstem.fixtock&hl=en_US" target="_blank" rel="noopener" data-track="google-play" aria-label="Get Fixtock on Google Play">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2F6BFF" d="M3.6 2.3 13.4 12l-9.8 9.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1z"/><path fill="#16A34A" d="m16.7 8.8-3.3 3.2-9.8-9.7c.2-.1.5-.1.8 0l12.3 6.5z"/><path fill="#F59E0B" d="M20.4 10.8c.9.5.9 1.9 0 2.4l-3.7 2-3.3-3.2 3.3-3.2 3.7 2z"/><path fill="#E11D48" d="M16.7 15.2 4.4 21.7c-.3.1-.6.1-.8 0l9.8-9.7 3.3 3.2z"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+            <a class="btn btn-ghost" href="https://app.fixtock.com/login" data-track="web-app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Open web app or sign in</a>
+          </div>
+          <div class="platforms" aria-label="Available on">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg> iPhone &amp; Android</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2.5"/><path d="M11 18h2"/></svg> iPad &amp; tablets</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg> Any browser</span>
+          </div>
+          <ul class="ticks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg>Free plan to start</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg>Every store in one place</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4.5 4.5L19 7"/></svg>Any currency, any time zone</li>
+          </ul>
+        </div>
+
+        <div class="phones">
+          <div class="phone back">
+            <!-- assets/screens/iphone/06-business-health-sm.webp -->
+            <img class="zoom" src="assets/screens/iphone/06-business-health-sm.webp" data-full="assets/screens/iphone/06-business-health-lg.webp" data-group="hero" data-caption="Fixtock Business Health: net worth, profit and loss, and net cash position" width="600" height="1304" alt="Fixtock Business Health: net worth, profit and loss, and net cash position" decoding="async" fetchpriority="high" />
+          </div>
+          <div class="phone front">
+            <!-- assets/screens/iphone/01-overview-dollar-sm.webp -->
+            <img class="zoom" src="assets/screens/iphone/01-overview-dollar-sm.webp" data-full="assets/screens/iphone/01-overview-dollar-lg.webp" data-group="hero" data-caption="Fixtock Overview: 14-day revenue, net result, gross margin and where revenue went" width="600" height="1304" alt="Fixtock Overview: 14-day revenue, net result, gross margin and where revenue went" decoding="async" fetchpriority="high" />
+          </div>
+          <div class="chip c1" aria-hidden="true">
+            <span class="dot t-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span>
+            <span>Net result<b>19% of revenue</b></span>
+          </div>
+          <div class="chip c2" aria-hidden="true">
+            <span class="dot t-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span>
+            <span>Shelf counts<b>Match the app</b></span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-fade"></div>
+    </div>
+
+    <!-- ═══ VALUE STRIP ═══ -->
+    <div class="wrap strip reveal">
+      <div class="strip-grid">
+        <div><b>Every item</b><span>Stock, batches, costs &amp; prices</span></div>
+        <div><b>Every sale</b><span>Recorded, timed and attributed</span></div>
+        <div><b>Every store</b><span>Transfers, audits &amp; counts</span></div>
+        <div><b>Every currency</b><span>Profit, margin &amp; expenses in yours</span></div>
+      </div>
+    </div>
+
+    <!-- ═══ TOUR (iPhone screenshots) ═══ -->
+    <section id="tour">
+      <div class="wrap">
+        <div class="center reveal">
+          <span class="kicker">Take the tour</span>
+          <h2 class="h2">Your whole business, one tap away.</h2>
+          <p class="sub">Insights, stock and money, all connected. Pick a screen to see what it tells you.</p>
+        </div>
+        <div class="tour reveal">
+          <ul class="tour-list" id="tourList">
+            <li class="tour-group" aria-hidden="true">Insights</li>
+            <li class="tour-item on" data-i="0">
+              <button type="button" aria-controls="tour-stage" aria-expanded="true">
+                <span class="ic t-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+                <span class="tt"><b>Overview</b><span>Your last 14 days at a glance.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Revenue, net result and gross margin, worked out for you</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>“Where revenue went”: cost of goods, expenses and what you kept</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Key numbers with trends against the previous 7 days</li></ul></div>
+            </li>
+            <li class="tour-item" data-i="1">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></span>
+                <span class="tt"><b>Daily sales</b><span>Every sale. Every seller. Every hour.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Today’s total, items, average sale and discounts given</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Sales by hour, with your busiest hour called out</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Each seller’s share of the day, and every sale record</li></ul></div>
+            </li>
+            <li class="tour-item" data-i="2">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
+                <span class="tt"><b>Business health</b><span>Is it making money? Can it pay what it owes?</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Business net worth: assets against liabilities</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Profit and loss, from revenue down to net profit</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Net cash position after every obligation</li></ul></div>
+            </li>
+            <li class="tour-item" data-i="3">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z"/></svg></span>
+                <span class="tt"><b>AI assistant</b><span>Ask in plain words. Get a straight answer.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>A monthly report written from your own numbers</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Risks flagged early, such as low stock on a best seller</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Recommendations you can act on today</li></ul></div>
+            </li>
+            <li class="tour-group" aria-hidden="true">Stock</li>
+            <li class="tour-item" data-i="4">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></span>
+                <span class="tt"><b>Stock details</b><span>Every batch, fully accounted for.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Sold, written off and on hand, against what was held</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Unit cost, unit price, margin and expiry per batch</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Reorder alerts and sell-through rate</li></ul></div>
+            </li>
+            <li class="tour-item" data-i="5">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span>
+                <span class="tt"><b>Inventory snapshot</b><span>What your stock is worth, right now.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Value at sell price, cost and potential profit</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Margin and markup across all stores</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Needs attention: out of stock, reorder now, expiring, count differs</li></ul></div>
+            </li>
+            <li class="tour-item" data-i="6">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span>
+                <span class="tt"><b>Stock audit</b><span>The shelf and the app, always in agreement.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Daily position: opening stock to live stock</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Shelf counts checked against the app</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Days of stock left and when you’ll hit the reorder level</li></ul></div>
+            </li>
+            <li class="tour-group" aria-hidden="true">Money</li>
+            <li class="tour-item" data-i="7">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>
+                <span class="tt"><b>Expenses</b><span>Every running cost, in its place.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Paid now or on credit, by category</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Shows the effect on cash and expenses before you save</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Rent, utilities, salaries, transport, repairs and more</li></ul></div>
+            </li>
+            <li class="tour-item" data-i="8">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6M7 17h4"/></svg></span>
+                <span class="tt"><b>Financial events</b><span>Bookkeeping without the jargon.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Cash movements, loans, deposits and receivables</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Expenses, liabilities, assets and depreciation</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Each one shows what it will change before you save</li></ul></div>
+            </li>
+            <li class="tour-item" data-i="9">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg></span>
+                <span class="tt"><b>Receivables</b><span>Collect what customers owe.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Find a customer by email, phone or customer ID</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Collect a payment or refund a deposit</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Balances that always settle correctly</li></ul></div>
+            </li>
+            <li class="tour-item" data-i="10">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10h18L12 4z"/><path d="M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg></span>
+                <span class="tt"><b>Liabilities</b><span>Pay suppliers, tax and bills on time.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Stock bought on credit, sales tax collected, other bills</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>See what is owed beside your business cash</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Pay in part or in full</li></ul></div>
+            </li>
+            <li class="tour-item" data-i="11">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
+                <span class="ic t-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M16 13h2M2 10h20"/></svg></span>
+                <span class="tt"><b>Owner cash</b><span>Money in, money out, on the record.</span></span>
+                <i class="bar" aria-hidden="true"></i>
+              </button>
+              <div class="more"><ul><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Owner adds cash to the business or takes it out</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Capital and cash update together</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>A clear summary of the result before you confirm</li></ul></div>
+            </li>
+          </ul>
+          <div class="tour-side">
+            <div class="tour-stage" id="tour-stage" aria-live="polite">
+              <div class="screen">
+                <!-- 01-overview-dollar-sm.webp · Overview -->
+                <img class="zoom on" src="assets/screens/iphone/01-overview-dollar-sm.webp" data-full="assets/screens/iphone/01-overview-dollar-lg.webp" data-group="tour" data-caption="Overview: Your last 14 days at a glance." width="600" height="1304" alt="Overview: revenue, net result, gross margin and where revenue went over the last 14 days" decoding="async" fetchpriority="high" />
+                <!-- 13-daily-sales-sm.webp · Daily sales -->
+                <img class="zoom" src="assets/screens/iphone/13-daily-sales-sm.webp" data-full="assets/screens/iphone/13-daily-sales-lg.webp" data-group="tour" data-caption="Daily sales: Every sale. Every seller. Every hour." width="600" height="1304" alt="Daily sales: today&#x27;s total, sales by hour, sales by seller and each sale record" decoding="async" loading="lazy" />
+                <!-- 06-business-health-sm.webp · Business health -->
+                <img class="zoom" src="assets/screens/iphone/06-business-health-sm.webp" data-full="assets/screens/iphone/06-business-health-lg.webp" data-group="tour" data-caption="Business health: Is it making money? Can it pay what it owes?" width="600" height="1304" alt="Business Health: net worth, profit and loss, and net cash position" decoding="async" loading="lazy" />
+                <!-- 07-ai-assistant-sm.webp · AI assistant -->
+                <img class="zoom" src="assets/screens/iphone/07-ai-assistant-sm.webp" data-full="assets/screens/iphone/07-ai-assistant-lg.webp" data-group="tour" data-caption="AI assistant: Ask in plain words. Get a straight answer." width="600" height="1304" alt="Fixtock BI assistant: plain-language business report with risks and recommendations" decoding="async" loading="lazy" />
+                <!-- 02-stock-details-sm.webp · Stock details -->
+                <img class="zoom" src="assets/screens/iphone/02-stock-details-sm.webp" data-full="assets/screens/iphone/02-stock-details-lg.webp" data-group="tour" data-caption="Stock details: Every batch, fully accounted for." width="600" height="1304" alt="Stock details: batch sold, written off and on hand, with cost, price and margin" decoding="async" loading="lazy" />
+                <!-- 04-inventory-snapshot-sm.webp · Inventory snapshot -->
+                <img class="zoom" src="assets/screens/iphone/04-inventory-snapshot-sm.webp" data-full="assets/screens/iphone/04-inventory-snapshot-lg.webp" data-group="tour" data-caption="Inventory snapshot: What your stock is worth, right now." width="600" height="1304" alt="Inventory snapshot: stock value at sell price, cost, potential profit and items needing attention" decoding="async" loading="lazy" />
+                <!-- 05-stock-audit-sm.webp · Stock audit -->
+                <img class="zoom" src="assets/screens/iphone/05-stock-audit-sm.webp" data-full="assets/screens/iphone/05-stock-audit-lg.webp" data-group="tour" data-caption="Stock audit: The shelf and the app, always in agreement." width="600" height="1304" alt="Stock audit: shelf count versus app, stock movement and days of stock left" decoding="async" loading="lazy" />
+                <!-- 08-record-expense-sm.webp · Expenses -->
+                <img class="zoom" src="assets/screens/iphone/08-record-expense-sm.webp" data-full="assets/screens/iphone/08-record-expense-lg.webp" data-group="tour" data-caption="Expenses: Every running cost, in its place." width="600" height="1304" alt="Record an expense: paid now or on credit, with categories" decoding="async" loading="lazy" />
+                <!-- 09-financial-events-sm.webp · Financial events -->
+                <img class="zoom" src="assets/screens/iphone/09-financial-events-sm.webp" data-full="assets/screens/iphone/09-financial-events-lg.webp" data-group="tour" data-caption="Financial events: Bookkeeping without the jargon." width="600" height="1304" alt="Record a financial event: cash, customers, costs, obligations and assets" decoding="async" loading="lazy" />
+                <!-- 10-receivables-sm.webp · Receivables -->
+                <img class="zoom" src="assets/screens/iphone/10-receivables-sm.webp" data-full="assets/screens/iphone/10-receivables-lg.webp" data-group="tour" data-caption="Receivables: Collect what customers owe." width="600" height="1304" alt="Receivables and payables: collect a customer payment or refund a deposit" decoding="async" loading="lazy" />
+                <!-- 11-offset-liability-sm.webp · Liabilities -->
+                <img class="zoom" src="assets/screens/iphone/11-offset-liability-sm.webp" data-full="assets/screens/iphone/11-offset-liability-lg.webp" data-group="tour" data-caption="Liabilities: Pay suppliers, tax and bills on time." width="600" height="1304" alt="Offset a liability: pay suppliers, sales tax and other bills" decoding="async" loading="lazy" />
+                <!-- 12-cash-movement-sm.webp · Owner cash -->
+                <img class="zoom" src="assets/screens/iphone/12-cash-movement-sm.webp" data-full="assets/screens/iphone/12-cash-movement-lg.webp" data-group="tour" data-caption="Owner cash: Money in, money out, on the record." width="600" height="1304" alt="Record cash movement: the owner adds or withdraws cash" decoding="async" loading="lazy" />
+              </div>
+            </div>
+            <div class="tour-ctl">
+              <button type="button" class="round" id="tourPrev" aria-label="Previous screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <span class="tour-count" id="tourCount">1 / 11</span>
+              <button type="button" class="round" id="tourNext" aria-label="Next screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+            </div>
+            <p class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg> Tap a screen to see it full size</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DEVICES ═══ -->
+    <section id="devices" class="bg-soft">
+      <div class="wrap">
+        <div class="devices-top reveal center">
+          <div>
+            <span class="kicker">One account, every screen</span>
+            <h2 class="h2">On the shop floor, in the office, on the go.</h2>
+            <p class="sub">Sell from a phone at the counter, review the books on a tablet, and run reports from any computer. Same account, same numbers.</p>
+          </div>
+          <div class="seg" role="tablist" aria-label="Choose a device">
+            <button role="tab" id="tab-phone" aria-controls="dev-phone" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg><span><i class="opt">iPhone &amp; </i>Android</span></button>
+            <button role="tab" id="tab-tablet" aria-controls="dev-tablet" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2.5"/><path d="M11 18h2"/></svg><span>iPad<i class="opt"> &amp; tablets</i></span></button>
+            <button role="tab" id="tab-web" aria-controls="dev-web" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>Web<i class="opt"> app</i></span></button>
+          </div>
+        </div>
+
+        <div class="dev-stage reveal">
+          <div class="dev-panel" id="dev-phone" role="tabpanel" aria-labelledby="tab-phone">
+            <div class="dev-media">
+              <div class="phone">
+                <!-- assets/screens/iphone/07-ai-assistant-sm.webp -->
+                <img class="zoom" src="assets/screens/iphone/07-ai-assistant-sm.webp" data-full="assets/screens/iphone/07-ai-assistant-lg.webp" data-group="devices" data-caption="Fixtock BI on iPhone: risks and recommendations from your own numbers" width="600" height="1304" alt="Fixtock BI assistant on iPhone" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="dev-copy">
+              <h3>Your business in your pocket</h3>
+              <p>Record sales at the counter, check stock on the shelf and get alerts the moment something needs you.</p>
+              <ul class="checks">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Sell, return and share receipts in seconds</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Low stock, transfer and daily summary alerts</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Face ID, Touch ID or fingerprint to unlock</li>
+              </ul>
+              <div class="hero-cta"><a class="store" href="https://apps.apple.com/us/app/fixtock/id6767768079" target="_blank" rel="noopener" data-track="app-store" aria-label="Download Fixtock on the App Store">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.7 12.8c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.5-1-2.5-3.9zM14.3 5.6c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.reedstem.fixtock&hl=en_US" target="_blank" rel="noopener" data-track="google-play" aria-label="Get Fixtock on Google Play">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2F6BFF" d="M3.6 2.3 13.4 12l-9.8 9.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1z"/><path fill="#16A34A" d="m16.7 8.8-3.3 3.2-9.8-9.7c.2-.1.5-.1.8 0l12.3 6.5z"/><path fill="#F59E0B" d="M20.4 10.8c.9.5.9 1.9 0 2.4l-3.7 2-3.3-3.2 3.3-3.2 3.7 2z"/><path fill="#E11D48" d="M16.7 15.2 4.4 21.7c-.3.1-.6.1-.8 0l9.8-9.7 3.3 3.2z"/></svg><span><small>Get it on</small><b>Google Play</b></span></a></div>
+            </div>
+          </div>
+
+          <div class="dev-panel" id="dev-tablet" role="tabpanel" aria-labelledby="tab-tablet" hidden>
+            <div class="dev-media">
+              <div class="tablet">
+                <!-- assets/screens/ipad/06-performance-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/06-performance-sm.webp" data-full="assets/screens/ipad/06-performance-lg.webp" data-group="devices" data-caption="Performance on iPad: every number for any period, by location" width="1280" height="960" alt="Fixtock Performance screen on iPad" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="dev-copy">
+              <h3>Room to see the whole picture</h3>
+              <p>On iPad and Android tablets, Fixtock uses the extra space for bigger charts, side-by-side figures and faster bookkeeping.</p>
+              <ul class="checks">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Performance, transactions and statements at a glance</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>A great back-office screen or a counter-top till</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Landscape and portrait, light and dark</li>
+              </ul>
+              <div class="hero-cta"><a class="btn btn-line" href="#ipad">See the iPad gallery</a></div>
+            </div>
+          </div>
+
+          <div class="dev-panel" id="dev-web" role="tabpanel" aria-labelledby="tab-web" hidden>
+            <div class="dev-media">
+              <div class="browser">
+                <div class="bar"><i></i><i></i><i></i><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>app.fixtock.com</span></div>
+                <!-- assets/screens/web/web-01-dashboard.webp -->
+                <img class="zoom" src="assets/screens/web/web-01-dashboard.webp" data-full="assets/screens/web/web-01-dashboard-lg.webp" data-group="devices" data-caption="Fixtock web app: dashboard with menu, workspace and stores" width="1600" height="928" alt="Fixtock web app dashboard in a browser" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="dev-copy">
+              <h3>Nothing to install</h3>
+              <p>Open Fixtock in any modern browser on Windows, Mac, Linux or ChromeOS and sign in with your usual account.</p>
+              <ul class="checks">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Side navigation and wide layouts made for big screens</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>“Open as app”: its own window, no address bar</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>The same data, live, as your phone and tablet</li>
+              </ul>
+              <div class="hero-cta"><a class="btn btn-primary" href="https://app.fixtock.com/login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Open web app or sign in</a></div>
+            </div>
+          </div>
+        </div>
+        <p class="sync reveal"><span class="live" aria-hidden="true"></span><span><b>Always in sync.</b> A sale on the phone shows on the tablet and the web as it happens.</span></p>
+      </div>
+    </section>
+
+    <!-- ═══ CURRENCY ═══ -->
+    <section id="currency">
+      <div class="wrap cur">
+        <div class="cur-media reveal">
+          <div class="phone">
+            <div class="screen" id="curScreen">
+              <!-- assets/screens/iphone/01-overview-dollar-sm.webp -->
+              <img class="zoom on" src="assets/screens/iphone/01-overview-dollar-sm.webp" data-full="assets/screens/iphone/01-overview-dollar-lg.webp" data-group="currency" data-caption="Overview in US dollars (America/Anchorage)" width="600" height="1304" alt="Overview in US dollars (America/Anchorage)" decoding="async" loading="lazy" />
+              <!-- assets/screens/iphone/06-business-health-sm.webp -->
+              <img class="zoom" src="assets/screens/iphone/06-business-health-sm.webp" data-full="assets/screens/iphone/06-business-health-lg.webp" data-group="currency" data-caption="Business Health in euros" width="600" height="1304" alt="Business Health in euros" decoding="async" loading="lazy" />
+              <!-- assets/screens/iphone/08-record-expense-sm.webp -->
+              <img class="zoom" src="assets/screens/iphone/08-record-expense-sm.webp" data-full="assets/screens/iphone/08-record-expense-lg.webp" data-group="currency" data-caption="Recording an expense in yen" width="600" height="1304" alt="Recording an expense in yen" decoding="async" loading="lazy" />
+              <!-- assets/screens/iphone/12-cash-movement-sm.webp -->
+              <img class="zoom" src="assets/screens/iphone/12-cash-movement-sm.webp" data-full="assets/screens/iphone/12-cash-movement-lg.webp" data-group="currency" data-caption="Owner cash in Brazilian reais" width="600" height="1304" alt="Owner cash in Brazilian reais" decoding="async" loading="lazy" />
+              <!-- assets/screens/iphone/11-offset-liability-sm.webp -->
+              <img class="zoom" src="assets/screens/iphone/11-offset-liability-sm.webp" data-full="assets/screens/iphone/11-offset-liability-lg.webp" data-group="currency" data-caption="Paying a supplier in New Taiwan dollars" width="600" height="1304" alt="Paying a supplier in New Taiwan dollars" decoding="async" loading="lazy" />
+            </div>
+          </div>
+          <div class="seg" role="tablist" aria-label="Show the app in another currency"><button role="tab" aria-selected="true" data-cur="0">$ USD</button><button role="tab" aria-selected="false" data-cur="1" tabindex="-1">€ EUR</button><button role="tab" aria-selected="false" data-cur="2" tabindex="-1">¥ JPY</button><button role="tab" aria-selected="false" data-cur="3" tabindex="-1">R$ BRL</button><button role="tab" aria-selected="false" data-cur="4" tabindex="-1">NT$ TWD</button></div>
+        </div>
+        <div class="reveal">
+          <span class="kicker">Global by design</span>
+          <h2 class="h2">178 countries. Every currency. Your business day.</h2>
+          <p class="sub">From New York to Lagos, Seoul to São Paulo, each company sets its own currency and time zone, so “today”, “this week” and every receipt match the way you actually trade.</p>
+          <ul class="checks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Figures, reports and receipts all in your currency</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Days and hours counted in your store’s time zone</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Sales tax handled at your rate</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Stores in different cities and time zones under one company</li>
+          </ul>
+          <ul class="pills" aria-label="Examples of supported currencies"><li>$ US Dollar</li><li>€ Euro</li><li>£ Pound</li><li>¥ Yen</li><li>₩ Won</li><li>₹ Rupee</li><li>R$ Real</li><li>C$ Canadian Dollar</li><li>A$ Australian Dollar</li><li>CHF Franc</li><li>AED Dirham</li><li>R Rand</li><li>₦ Naira</li><li>NT$ Taiwan Dollar</li><li>+ every other currency</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ iPAD GALLERY ═══ -->
+    <section id="ipad" class="bg-soft">
+      <div class="wrap gal-head reveal">
+        <div>
+          <span class="kicker">Built for iPad</span>
+          <h2 class="h2">The back office, on a big screen.</h2>
+          <p class="sub">Performance, transactions, payments and statements, with room to breathe.</p>
+        </div>
+        <div class="gal-ctl">
+          <button type="button" class="round" id="galPrev" aria-label="Previous iPad screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <button type="button" class="round" id="galNext" aria-label="Next iPad screen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+        </div>
+      </div>
+      <div class="rail reveal" id="rail" tabindex="0" aria-label="iPad screenshots, scroll sideways">
+            <figure class="slide" data-k="0">
+              <div class="tablet">
+                <!-- 08-overview-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/08-overview-sm.webp" data-full="assets/screens/ipad/08-overview-lg.webp" data-group="ipad" data-caption="Overview on a big screen: Revenue, net result and margin for the last 14 days, with room to see it all."
+                     width="1280" height="960" alt="Overview on a big screen on iPad: Revenue, net result and margin for the last 14 days, with room to see it all." loading="lazy" decoding="async" />
+              </div>
+              <figcaption><b>Overview on a big screen</b><span>Revenue, net result and margin for the last 14 days, with room to see it all.</span></figcaption>
+            </figure>
+            <figure class="slide" data-k="1">
+              <div class="tablet">
+                <!-- 06-performance-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/06-performance-sm.webp" data-full="assets/screens/ipad/06-performance-lg.webp" data-group="ipad" data-caption="Performance for any period: Revenue, items sold, discounts, cost of goods, expenses and sales tax, by location."
+                     width="1280" height="960" alt="Performance for any period on iPad: Revenue, items sold, discounts, cost of goods, expenses and sales tax, by location." loading="lazy" decoding="async" />
+              </div>
+              <figcaption><b>Performance for any period</b><span>Revenue, items sold, discounts, cost of goods, expenses and sales tax, by location.</span></figcaption>
+            </figure>
+            <figure class="slide" data-k="2">
+              <div class="tablet">
+                <!-- 04-transactions-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/04-transactions-sm.webp" data-full="assets/screens/ipad/04-transactions-lg.webp" data-group="ipad" data-caption="Transactions, day by day: Revenue, cost of goods, expenses and tax for each day, with a chart of the period."
+                     width="1280" height="960" alt="Transactions, day by day on iPad: Revenue, cost of goods, expenses and tax for each day, with a chart of the period." loading="lazy" decoding="async" />
+              </div>
+              <figcaption><b>Transactions, day by day</b><span>Revenue, cost of goods, expenses and tax for each day, with a chart of the period.</span></figcaption>
+            </figure>
+            <figure class="slide" data-k="3">
+              <div class="tablet">
+                <!-- 02-ai-sales-today-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/02-ai-sales-today-sm.webp" data-full="assets/screens/ipad/02-ai-sales-today-lg.webp" data-group="ipad" data-caption="Ask Fixtock BI: “Sales today” answered in seconds, with risks and recommendations."
+                     width="1280" height="960" alt="Ask Fixtock BI on iPad: “Sales today” answered in seconds, with risks and recommendations." loading="lazy" decoding="async" />
+              </div>
+              <figcaption><b>Ask Fixtock BI</b><span>“Sales today” answered in seconds, with risks and recommendations.</span></figcaption>
+            </figure>
+            <figure class="slide" data-k="4">
+              <div class="tablet">
+                <!-- 07-stock-details-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/07-stock-details-sm.webp" data-full="assets/screens/ipad/07-stock-details-lg.webp" data-group="ipad" data-caption="Batch performance: Gross profit at landed cost, write-offs and how much of the cost you’ve recovered."
+                     width="1280" height="960" alt="Batch performance on iPad: Gross profit at landed cost, write-offs and how much of the cost you’ve recovered." loading="lazy" decoding="async" />
+              </div>
+              <figcaption><b>Batch performance</b><span>Gross profit at landed cost, write-offs and how much of the cost you’ve recovered.</span></figcaption>
+            </figure>
+            <figure class="slide" data-k="5">
+              <div class="tablet">
+                <!-- 05-collect-payment-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/05-collect-payment-sm.webp" data-full="assets/screens/ipad/05-collect-payment-lg.webp" data-group="ipad" data-caption="Collect a customer payment: Cash, transfer or a customer’s deposit, with the result shown before you record it."
+                     width="1280" height="960" alt="Collect a customer payment on iPad: Cash, transfer or a customer’s deposit, with the result shown before you record it." loading="lazy" decoding="async" />
+              </div>
+              <figcaption><b>Collect a customer payment</b><span>Cash, transfer or a customer’s deposit, with the result shown before you record it.</span></figcaption>
+            </figure>
+            <figure class="slide" data-k="6">
+              <div class="tablet">
+                <!-- 03-financial-events-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/03-financial-events-sm.webp" data-full="assets/screens/ipad/03-financial-events-lg.webp" data-group="ipad" data-caption="Record any financial event: Cash, customers, costs, obligations and assets, all from one sheet."
+                     width="1280" height="960" alt="Record any financial event on iPad: Cash, customers, costs, obligations and assets, all from one sheet." loading="lazy" decoding="async" />
+              </div>
+              <figcaption><b>Record any financial event</b><span>Cash, customers, costs, obligations and assets, all from one sheet.</span></figcaption>
+            </figure>
+            <figure class="slide" data-k="7">
+              <div class="tablet">
+                <!-- 09-offset-liability-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/09-offset-liability-sm.webp" data-full="assets/screens/ipad/09-offset-liability-lg.webp" data-group="ipad" data-caption="Pay what you owe: Suppliers, sales tax and other bills, beside the business’s cash position."
+                     width="1280" height="960" alt="Pay what you owe on iPad: Suppliers, sales tax and other bills, beside the business’s cash position." loading="lazy" decoding="async" />
+              </div>
+              <figcaption><b>Pay what you owe</b><span>Suppliers, sales tax and other bills, beside the business’s cash position.</span></figcaption>
+            </figure>
+            <figure class="slide" data-k="8">
+              <div class="tablet">
+                <!-- 01-edit-store-sm.webp -->
+                <img class="zoom" src="assets/screens/ipad/01-edit-store-sm.webp" data-full="assets/screens/ipad/01-edit-store-lg.webp" data-group="ipad" data-caption="Stores &amp; locations: Add each shop or warehouse with its name, address and location code."
+                     width="1280" height="960" alt="Stores &amp; locations on iPad: Add each shop or warehouse with its name, address and location code." loading="lazy" decoding="async" />
+              </div>
+              <figcaption><b>Stores &amp; locations</b><span>Add each shop or warehouse with its name, address and location code.</span></figcaption>
+            </figure>
+      </div>
+      <div class="dots" id="dots"><button type="button" class="dot on" data-k="0" aria-label="Show Overview on a big screen"></button><button type="button" class="dot" data-k="1" aria-label="Show Performance for any period"></button><button type="button" class="dot" data-k="2" aria-label="Show Transactions, day by day"></button><button type="button" class="dot" data-k="3" aria-label="Show Ask Fixtock BI"></button><button type="button" class="dot" data-k="4" aria-label="Show Batch performance"></button><button type="button" class="dot" data-k="5" aria-label="Show Collect a customer payment"></button><button type="button" class="dot" data-k="6" aria-label="Show Record any financial event"></button><button type="button" class="dot" data-k="7" aria-label="Show Pay what you owe"></button><button type="button" class="dot" data-k="8" aria-label="Show Stores &amp; locations"></button></div>
+    </section>
+
+    <!-- ═══ WEB ═══ -->
+    <section id="web">
+      <div class="wrap web">
+        <div class="web-copy reveal">
+          <span class="kicker">Web app</span>
+          <h2 class="h2">Run the numbers from your desk.</h2>
+          <p class="sub">The full Fixtock experience in your browser at app.fixtock.com: a side menu, your workspace and stores always in view, and step-by-step help for everyday tasks. Same live data as your team’s phones.</p>
+          <ul class="checks">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Menu, workspace and stores always in view</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>“How do I…?” guides that tick off each step as you go</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Works on Windows, Mac, Linux and ChromeOS</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Subscribe and manage your plan by card</li>
+          </ul>
+          <a class="btn btn-primary" href="https://app.fixtock.com/login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Open web app or sign in</a>
+        </div>
+        <div class="web-media reveal">
+          <div class="browser">
+            <div class="bar"><i></i><i></i><i></i><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>app.fixtock.com</span></div>
+            <!-- assets/screens/web/web-01-dashboard.webp -->
+            <img id="webMain" class="zoom" src="assets/screens/web/web-01-dashboard.webp" data-full="assets/screens/web/web-01-dashboard-lg.webp"
+                 data-group="web" data-caption="Web app · Dashboard: 14-day overview with menu, workspace, stores and step-by-step help" width="1600" height="928" alt="Fixtock web app: Dashboard. 14-day overview with menu, workspace, stores and step-by-step help" loading="lazy" decoding="async" />
+          </div>
+          <div class="wthumbs" id="wthumbs">
+              <button type="button" class="wthumb on" aria-pressed="true" data-src="assets/screens/web/web-01-dashboard.webp" data-full="assets/screens/web/web-01-dashboard-lg.webp" data-caption="Web app · Dashboard: 14-day overview with menu, workspace, stores and step-by-step help" data-alt="Fixtock web app: Dashboard. 14-day overview with menu, workspace, stores and step-by-step help">
+                <!-- assets/screens/web/web-01-dashboard.webp -->
+                <img src="assets/screens/web/web-01-dashboard.webp" width="1600" height="928" alt="" loading="lazy" decoding="async" />
+                <span>Dashboard</span>
+              </button>
+              <button type="button" class="wthumb" aria-pressed="false" data-src="assets/screens/web/web-02-offset-liability.webp" data-full="assets/screens/web/web-02-offset-liability-lg.webp" data-caption="Web app · Pay what you owe: Pay suppliers, sales tax and other bills" data-alt="Fixtock web app: Pay what you owe. Pay suppliers, sales tax and other bills">
+                <!-- assets/screens/web/web-02-offset-liability.webp -->
+                <img src="assets/screens/web/web-02-offset-liability.webp" width="1600" height="928" alt="" loading="lazy" decoding="async" />
+                <span>Pay what you owe</span>
+              </button>
+              <button type="button" class="wthumb" aria-pressed="false" data-src="assets/screens/web/web-03-collect-payment.webp" data-full="assets/screens/web/web-03-collect-payment-lg.webp" data-caption="Web app · Collect payment: Take a customer payment, by cash or from their deposit" data-alt="Fixtock web app: Collect payment. Take a customer payment, by cash or from their deposit">
+                <!-- assets/screens/web/web-03-collect-payment.webp -->
+                <img src="assets/screens/web/web-03-collect-payment.webp" width="1600" height="928" alt="" loading="lazy" decoding="async" />
+                <span>Collect payment</span>
+              </button>
+              <button type="button" class="wthumb" aria-pressed="false" data-src="assets/screens/web/web-04-record-expense.webp" data-full="assets/screens/web/web-04-record-expense-lg.webp" data-caption="Web app · Record expense: Paid now or on credit, by category" data-alt="Fixtock web app: Record expense. Paid now or on credit, by category">
+                <!-- assets/screens/web/web-04-record-expense.webp -->
+                <img src="assets/screens/web/web-04-record-expense.webp" width="1600" height="928" alt="" loading="lazy" decoding="async" />
+                <span>Record expense</span>
+              </button>
+              <button type="button" class="wthumb" aria-pressed="false" data-src="assets/screens/web/web-05-cash-movement.webp" data-full="assets/screens/web/web-05-cash-movement-lg.webp" data-caption="Web app · Owner cash: The owner adds or takes out cash, with the result shown first" data-alt="Fixtock web app: Owner cash. The owner adds or takes out cash, with the result shown first">
+                <!-- assets/screens/web/web-05-cash-movement.webp -->
+                <img src="assets/screens/web/web-05-cash-movement.webp" width="1600" height="928" alt="" loading="lazy" decoding="async" />
+                <span>Owner cash</span>
+              </button>
+              <button type="button" class="wthumb" aria-pressed="false" data-src="assets/screens/web/web-06-refund-deposit.webp" data-full="assets/screens/web/web-06-refund-deposit-lg.webp" data-caption="Web app · Refund deposit: Offset what they owe, then refund the rest" data-alt="Fixtock web app: Refund deposit. Offset what they owe, then refund the rest">
+                <!-- assets/screens/web/web-06-refund-deposit.webp -->
+                <img src="assets/screens/web/web-06-refund-deposit.webp" width="1600" height="928" alt="" loading="lazy" decoding="async" />
+                <span>Refund deposit</span>
+              </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FEATURES ═══ -->
+    <section id="features" class="bg-soft">
+      <div class="wrap">
+        <div class="center reveal">
+          <span class="kicker">Everything in one app</span>
+          <h2 class="h2">Built for how real businesses run.</h2>
+          <p class="sub">From the stockroom to the sales floor to the books: one connected system instead of notebooks, spreadsheets and guesswork.</p>
+        </div>
+        <div class="grid">
+          <article class="card reveal"><div class="ic t-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></svg></div><h3>Inventory &amp; batches</h3><p>Products, variants, batches, expiry dates, costs and prices, with low-stock alerts before you run out.</p></article>
+          <article class="card reveal"><div class="ic t-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg></div><h3>Sales &amp; returns</h3><p>Fast, accurate sales with discounts and returns, each one timed, priced and linked to the seller.</p></article>
+          <article class="card reveal"><div class="ic t-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div><h3>Stock audits</h3><p>Count the shelf, compare it with the app and fix differences with a clear adjustment trail.</p></article>
+          <article class="card reveal"><div class="ic t-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3l4 4-4 4"/><path d="M3 7h18M7 21l-4-4 4-4"/><path d="M21 17H3"/></svg></div><h3>Multi-store transfers</h3><p>Send and request stock between locations, and always know what’s where.</p></article>
+          <article class="card reveal"><div class="ic t-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div><h3>Customers &amp; balances</h3><p>Customer profiles with unique IDs, what they owe, deposits and refunds.</p></article>
+          <article class="card reveal"><div class="ic t-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6M7 17h4"/></svg></div><h3>Expenses &amp; statements</h3><p>Operating costs, loans, tax and assets, with clean statements of how money moved.</p></article>
+          <article class="card reveal"><div class="ic t-violet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8z"/></svg></div><h3>AI business insights</h3><p>Plain-language reports and next steps drawn from your own numbers.</p></article>
+          <article class="card reveal"><div class="ic t-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Teams &amp; permissions</h3><p>Invite staff with the right role. They see and do only what you allow.</p></article>
+          <article class="card reveal"><div class="ic t-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><h3>Any currency &amp; time zone</h3><p>Each company sets its own currency and time zone for every figure and report.</p></article>
+          <article class="card reveal"><div class="ic t-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></div><h3>Smart alerts</h3><p>Low stock, transfers, audits, payments and a 7 AM summary of yesterday.</p></article>
+          <article class="card reveal"><div class="ic t-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></div><h3>Receipts you can share</h3><p>Save or share a receipt after every sale, straight from the till.</p></article>
+          <article class="card reveal"><div class="ic t-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 1-9.9A6 6 0 0 1 19 10a4 4 0 0 1 0 8z"/></svg></div><h3>Keeps working on bad networks</h3><p>Recent figures stay on screen when the connection drops, then refresh.</p></article>
+        </div>
+        <div class="who reveal">
+          <p>MADE FOR BUSINESSES THAT BUY, STORE AND SELL GOODS</p>
+          <ul class="pills"><li>Retail shops</li><li>Supermarkets</li><li>Pharmacies</li><li>Wholesalers</li><li>Distributors</li><li>Beverages &amp; FMCG</li><li>Building materials</li><li>Fashion &amp; beauty</li><li>Electronics</li><li>Agro &amp; food</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section id="how">
+      <div class="wrap">
+        <div class="center reveal">
+          <span class="kicker">Get started in minutes</span>
+          <h2 class="h2">Up and running before your next sale.</h2>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><h3>Create your company</h3><p>Download the app or open the web app, name your business, set your currency and add your stores.</p></div>
+          <div class="step reveal"><h3>Add stock &amp; your team</h3><p>Enter your products and quantities, then invite staff with the roles they need.</p></div>
+          <div class="step reveal"><h3>Sell and see</h3><p>Record sales as they happen. Your stock, profit and insights update on their own.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SECURITY ═══ -->
+    <section id="security" style="padding-top:0">
+      <div class="wrap">
+        <div class="trust reveal">
+          <div>
+            <span class="kicker">Security &amp; privacy</span>
+            <h2 class="h2">Your business data stays your business.</h2>
+            <p class="sub">Fixtock is built on Google Cloud infrastructure with secure sign-in and strict per-company separation. We never sell your data.</p>
+            <div class="legal-links">
+              <a href="legal/privacy.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Privacy Policy</a>
+              <a href="legal/terms.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Terms &amp; Conditions</a>
+              <a href="legal/eula.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="m8.5 12.5-1.5 8.5 5-3 5 3-1.5-8.5"/></svg>License Agreement</a>
+            </div>
+          </div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span><b>Encrypted</b> in transit and at rest.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><span><b>Verified accounts:</b> email and phone verification, with protected password resets.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 11v3M8.5 7.5A5 5 0 0 1 17 11v2M7 11a5 5 0 0 1 .5-2.2M7 14v-1M17 16c-.3 2-1 3.5-2 5M12 17c0 2-.5 3-1 4M9.5 20c.6-1.5.9-3.2.5-5"/></svg><span><b>Biometric unlock</b> on phones and tablets.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1-5h16l1 5M3 9h18v11H3zM3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"/></svg><span><b>Role-based access:</b> each team member sees only what their role allows.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg><span><b>Full history:</b> who did what, and when, for every change.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section id="faq" class="bg-soft">
+      <div class="wrap">
+        <div class="center reveal">
+          <span class="kicker">FAQ</span>
+          <h2 class="h2">Questions, answered.</h2>
+        </div>
+        <div class="faq">
+          <details class="reveal"><summary>Who is Fixtock for?</summary><p>Retailers, wholesalers, pharmacies, supermarkets, distributors and any business that buys, stores and sells goods, anywhere in the world, from a single shop to several locations with a team.</p></details>
+          <details class="reveal"><summary>Which devices does it work on?</summary><p>iPhone, iPad and Android phones and tablets, plus any modern browser through the <a href="https://app.fixtock.com/login">web app</a>. Sign in with the same account everywhere and your data stays in sync.</p></details>
+          <details class="reveal"><summary>Can I manage more than one store?</summary><p>Yes. Add your locations, move stock between them and see figures per store or for the whole business. How many stores you can add depends on your plan.</p></details>
+          <details class="reveal"><summary>Does it work in my country and currency?</summary><p>Yes. Fixtock is available in 178 countries and regions, and works with every world currency. Each company chooses its own currency and time zone, and every figure, report and receipt uses them.</p></details>
+          <details class="reveal"><summary>Can my staff use it without seeing everything?</summary><p>Yes. Invite each person with a role. Viewers can only look, while Editors and Admins get more access. You stay in control as the Owner, and every action is recorded.</p></details>
+          <details class="reveal"><summary>What happens if the internet drops?</summary><p>Fixtock keeps showing your most recent figures and tells you they may be out of date, then refreshes as soon as you’re back online.</p></details>
+          <details class="reveal"><summary>Who owns my data?</summary><p>Your business does. We use it only to run Fixtock for you, never sell it, and you can ask for it to be deleted. Read the <a href="legal/privacy.html">Privacy Policy</a> for the details.</p></details>
+          <details class="reveal"><summary>How much does it cost?</summary><p>There’s a free plan to get started, and paid plans (Lite, Pro and Enterprise) for more stores, more stock items and advanced features. Pay through the App Store, Google Play or by card on the web, and cancel any time.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FINAL CTA ═══ -->
+    <section style="padding-bottom:0">
+      <div class="wrap">
+        <div class="final reveal">
+          <img src="assets/logo.png" alt="" width="72" height="72" />
+          <h2 class="h2">Run your business on numbers you can trust.</h2>
+          <p class="sub">Start free on your phone, tablet or browser.</p>
+          <div class="hero-cta">
+            <a class="store" href="https://apps.apple.com/us/app/fixtock/id6767768079" target="_blank" rel="noopener" data-track="app-store" aria-label="Download Fixtock on the App Store">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.7 12.8c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.5-1-2.5-3.9zM14.3 5.6c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg><span><small>Download on the</small><b>App Store</b></span></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.reedstem.fixtock&hl=en_US" target="_blank" rel="noopener" data-track="google-play" aria-label="Get Fixtock on Google Play">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#2F6BFF" d="M3.6 2.3 13.4 12l-9.8 9.7c-.4-.2-.6-.6-.6-1.1V3.4c0-.5.2-.9.6-1.1z"/><path fill="#16A34A" d="m16.7 8.8-3.3 3.2-9.8-9.7c.2-.1.5-.1.8 0l12.3 6.5z"/><path fill="#F59E0B" d="M20.4 10.8c.9.5.9 1.9 0 2.4l-3.7 2-3.3-3.2 3.3-3.2 3.7 2z"/><path fill="#E11D48" d="M16.7 15.2 4.4 21.7c-.3.1-.6.1-.8 0l9.8-9.7 3.3 3.2z"/></svg><span><small>Get it on</small><b>Google Play</b></span></a>
+            <a class="btn btn-ghost" href="https://app.fixtock.com/login" data-track="web-app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Open web app or sign in</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <a class="logo" href="#top"><img src="assets/logo.png" alt="" width="36" height="36" />Fixtock</a>
+          <p>Business operations and intelligence, simplified. Inventory, sales, expenses and insight in one app.</p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#tour">Tour</a></li>
+            <li><a href="#devices">Devices</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="release-notes.html">Release notes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Fixtock</h4>
+          <ul>
+            <li><a href="https://apps.apple.com/us/app/fixtock/id6767768079" target="_blank" rel="noopener">App Store</a></li>
+            <li><a href="https://play.google.com/store/apps/details?id=com.reedstem.fixtock&hl=en_US" target="_blank" rel="noopener">Google Play</a></li>
+            <li><a href="https://app.fixtock.com/login">Web app / Sign in</a></li>
+          </ul>
+          <h4 style="margin-top:22px">Legal</h4>
+          <ul>
+            <li><a href="legal/privacy.html">Privacy Policy</a></li>
+            <li><a href="legal/terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="legal/eula.html">License Agreement (EULA)</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:support@fixtock.com">support@fixtock.com</a></li>
+            <li><a href="mailto:support@fixtock.com?subject=Privacy%20request">Privacy requests</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal-line">
+        <span>© <span id="yr">2026</span> Reedstem LLC. All rights reserved. Fixtock is a product of Reedstem LLC, Denver, Colorado, USA.</span>
+        <span>App Store is a service mark of Apple Inc. Google Play is a trademark of Google LLC.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- mobile sticky download bar -->
+  <div class="dock" id="dock">
+    <a class="get" id="dockGet" href="https://apps.apple.com/us/app/fixtock/id6767768079" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg><span id="dockGetLabel">Get the app</span></a>
+    <a class="web-a" href="https://app.fixtock.com/login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Sign in</a>
+  </div>
+
+  <!-- lightbox: full-size screenshot + its file name -->
+  <dialog class="lb" id="lb" aria-label="Screenshot viewer">
+    <span class="lb-count" id="lbCount"></span>
+    <figure class="lb-fig"><img id="lbImg" alt="" /></figure>
+    <div class="lb-cap"><b id="lbCap"></b><code id="lbFile"></code></div>
+    <button type="button" class="round lb-x" id="lbX" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <button type="button" class="round lb-p" id="lbP" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button type="button" class="round lb-n" id="lbN" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
+  </dialog>
+
+  <script>
+  (function () {
+    'use strict';
+    document.body.classList.remove('no-js');
+    var $ = function (s, r) { return (r || document).querySelector(s); };
+    var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ── nav: solid on scroll, mobile menu, current section, progress ── */
+    var nav = $('#nav'), progress = $('#progress'), dock = $('#dock');
+    var ticking = false;
+    function onScroll() {
+      var y = window.scrollY, h = document.documentElement.scrollHeight - innerHeight;
+      nav.classList.toggle('solid', y > 24 || links.classList.contains('open'));
+      progress.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
+      dock.classList.toggle('show', y > innerHeight * 0.9 && y < h - 420);
+      ticking = false;
+    }
+    var links = $('#links'), menuBtn = $('#menuBtn');
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    menuBtn.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open);
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      onScroll();
+    });
+    links.addEventListener('click', function (e) { if (e.target.closest('a')) { links.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false'); onScroll(); } });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && links.classList.contains('open')) menuBtn.click(); });
+    onScroll();
+
+    if ('IntersectionObserver' in window) {
+      var navLinks = $$('.links a[href^="#"]');
+      var spy = new IntersectionObserver(function (es) {
+        es.forEach(function (en) {
+          if (en.isIntersecting) navLinks.forEach(function (a) { a.classList.toggle('cur', a.getAttribute('href') === '#' + en.target.id); });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      ['tour', 'devices', 'features', 'security', 'faq'].forEach(function (id) { var el = document.getElementById(id); if (el) spy.observe(el); });
+    }
+
+    /* mobile dock: send Android visitors to Google Play, others to the App Store */
+    if (/android/i.test(navigator.userAgent)) { $('#dockGet').href = 'https://play.google.com/store/apps/details?id=com.reedstem.fixtock&hl=en_US'; }
+
+    $('#yr').textContent = new Date().getFullYear();
+
+    /* ── reveal on scroll ── */
+    var els = $$('.reveal');
+    if (!('IntersectionObserver' in window) || reduce) { els.forEach(function (el) { el.classList.add('in'); }); }
+    else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+      els.forEach(function (el) { io.observe(el); });
+    }
+
+    /* ── segmented tabs (devices, currency): click + arrow keys ── */
+    function tabs(list, onSelect) {
+      var btns = $$('[role="tab"]', list);
+      function select(i, focus) {
+        btns.forEach(function (b, k) { b.setAttribute('aria-selected', k === i); b.tabIndex = k === i ? 0 : -1; });
+        if (focus) btns[i].focus();
+        onSelect(i, btns[i]);
+      }
+      btns.forEach(function (b, i) {
+        b.addEventListener('click', function () { select(i); });
+        b.addEventListener('keydown', function (e) {
+          var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (d) { e.preventDefault(); select((i + d + btns.length) % btns.length, true); }
+        });
+      });
+    }
+    var devList = $('#devices [role="tablist"]');
+    tabs(devList, function (i, b) {
+      $$('.dev-panel').forEach(function (p) { p.hidden = p.id !== b.getAttribute('aria-controls'); });
+      var shown = document.getElementById(b.getAttribute('aria-controls'));
+      shown.classList.remove('enter'); void shown.offsetWidth; shown.classList.add('enter');
+    });
+    var curImgs = $$('#curScreen img');
+    tabs($('#currency [role="tablist"]'), function (i) { curImgs.forEach(function (im, k) { im.classList.toggle('on', k === i); }); });
+    if (!reduce) {  // gently flip the currency every few seconds until someone chooses
+      var curBtns = $$('#currency [role="tab"]'), curAuto = setInterval(function () {
+        var i = curBtns.findIndex(function (b) { return b.getAttribute('aria-selected') === 'true'; });
+        var n = (i + 1) % curBtns.length;
+        curBtns.forEach(function (b, k) { b.setAttribute('aria-selected', k === n); b.tabIndex = k === n ? 0 : -1; });
+        curImgs.forEach(function (im, k) { im.classList.toggle('on', k === n); });
+      }, 4000);
+      $('#currency [role="tablist"]').addEventListener('click', function () { clearInterval(curAuto); }, { once: true });
+    }
+
+    /* ── tour: list ↔ phone, autoplay while visible until the visitor takes over ── */
+    var items = $$('.tour-item'), shots = $$('#tour-stage img'), count = $('#tourCount');
+    var cur = 0, DUR = 6000, start = 0, raf = 0, auto = !reduce, inView = false, paused = false;
+    count.textContent = '1 / ' + items.length;
+    function show(i) {
+      cur = (i + items.length) % items.length;
+      items.forEach(function (it, k) {
+        var on = k === cur; it.classList.toggle('on', on);
+        $('button', it).setAttribute('aria-expanded', on);
+        it.style.removeProperty('--p');
+      });
+      shots.forEach(function (im, k) { im.classList.toggle('on', k === cur); });
+      count.textContent = (cur + 1) + ' / ' + items.length;
+      start = performance.now();
+    }
+    function tick(t) {
+      if (auto && inView && !paused) {
+        var p = Math.min(1, (t - start) / DUR);
+        items[cur].style.setProperty('--p', p);
+        if (p >= 1) show(cur + 1);
+      } else { start = t - (parseFloat(items[cur].style.getPropertyValue('--p')) || 0) * DUR; }
+      raf = requestAnimationFrame(tick);
+    }
+    function takeOver() { auto = false; items.forEach(function (it) { it.style.removeProperty('--p'); }); }
+    items.forEach(function (it, k) { $('button', it).addEventListener('click', function () { takeOver(); show(k); }); });
+    $('#tourPrev').addEventListener('click', function () { takeOver(); show(cur - 1); });
+    $('#tourNext').addEventListener('click', function () { takeOver(); show(cur + 1); });
+    var tourEl = $('#tour .tour');
+    tourEl.addEventListener('mouseenter', function () { paused = true; });
+    tourEl.addEventListener('mouseleave', function () { paused = false; });
+    tourEl.addEventListener('focusin', function () { paused = true; });
+    tourEl.addEventListener('focusout', function () { paused = false; });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; }, { threshold: 0.35 }).observe(tourEl);
+    }
+    // swipe the phone on touch screens
+    (function () {
+      var x0 = null, stage = $('#tour-stage');
+      stage.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      stage.addEventListener('touchend', function (e) {
+        if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 40) { stage.dataset.swiped = '1'; takeOver(); show(cur + (dx < 0 ? 1 : -1)); }
+      });
+    })();
+    show(0); raf = requestAnimationFrame(tick);
+
+    /* ── iPad rail: buttons, dots, keyboard, active slide ── */
+    var rail = $('#rail'), slides = $$('.slide', rail), dots = $$('#dots .dot');
+    function goSlide(k) {
+      k = Math.max(0, Math.min(slides.length - 1, k));
+      var s = slides[k];
+      rail.scrollTo({ left: s.offsetLeft - (rail.clientWidth - s.clientWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    function activeSlide() { var c = rail.scrollLeft + rail.clientWidth / 2, best = 0, bd = 1e9;
+      slides.forEach(function (s, k) { var d = Math.abs(s.offsetLeft + s.clientWidth / 2 - c); if (d < bd) { bd = d; best = k; } }); return best; }
+    var railT = 0;
+    function markActive() { var a = activeSlide(); slides.forEach(function (s, k) { s.classList.toggle('on', k === a); }); dots.forEach(function (d, k) { d.classList.toggle('on', k === a); }); }
+    rail.addEventListener('scroll', function () { cancelAnimationFrame(railT); railT = requestAnimationFrame(markActive); }, { passive: true });
+    $('#galPrev').addEventListener('click', function () { goSlide(activeSlide() - 1); });
+    $('#galNext').addEventListener('click', function () { goSlide(activeSlide() + 1); });
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { goSlide(k); }); });
+    rail.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); goSlide(activeSlide() + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goSlide(activeSlide() - 1); }
+    });
+    markActive();
+
+    /* ── web thumbnails swap the big browser shot ── */
+    var webMain = $('#webMain'), wthumbs = $$('.wthumb');
+    wthumbs.forEach(function (th) {
+      th.addEventListener('click', function () {
+        wthumbs.forEach(function (o) { var on = o === th; o.classList.toggle('on', on); o.setAttribute('aria-pressed', on); });
+        webMain.style.opacity = '.35';
+        var next = new Image(); next.src = th.dataset.src;
+        var swap = function () {
+          webMain.src = th.dataset.src; webMain.dataset.full = th.dataset.full;
+          webMain.dataset.caption = th.dataset.caption; webMain.alt = th.dataset.alt; webMain.style.opacity = '';
+        };
+        if (next.decode) next.decode().then(swap, swap); else next.onload = swap;
+      });
+    });
+
+    /* ── lightbox: full-size view with caption and file name ── */
+    var lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap'), lbFile = $('#lbFile'), lbCount = $('#lbCount');
+    var group = [], gi = 0;
+    function render() {
+      var im = group[gi], src = im.dataset.full || im.currentSrc || im.src;
+      lbImg.src = src; lbImg.alt = im.alt;
+      lbCap.textContent = im.dataset.caption || im.alt;
+      lbFile.textContent = src.split('/').slice(-2).join('/');
+      lbCount.textContent = group.length > 1 ? (gi + 1) + ' / ' + group.length : '';
+      $('#lbP').hidden = $('#lbN').hidden = group.length < 2;
+    }
+    function openLb(img) {
+      var g = img.dataset.group;
+      group = $$('img.zoom[data-group="' + g + '"]').filter(function (x) { return !x.closest('[hidden]'); });
+      if (!group.length) group = [img];
+      gi = Math.max(0, group.indexOf(img));
+      render();
+      if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function closeLb() { if (lb.close) lb.close(); else lb.removeAttribute('open'); }
+    lb.addEventListener('close', function () { document.documentElement.style.overflow = ''; });
+    document.addEventListener('click', function (e) {
+      var img = e.target.closest('img.zoom');
+      if (!img) return;
+      if (img.closest('#tour-stage') && $('#tour-stage').dataset.swiped) { delete $('#tour-stage').dataset.swiped; return; }
+      if (img.closest('.slide') && !img.closest('.slide').classList.contains('on')) { goSlide(slides.indexOf(img.closest('.slide'))); return; }
+      openLb(img);
+    });
+    $('#lbX').addEventListener('click', closeLb);
+    $('#lbP').addEventListener('click', function () { gi = (gi - 1 + group.length) % group.length; render(); });
+    $('#lbN').addEventListener('click', function () { gi = (gi + 1) % group.length; render(); });
+    lb.addEventListener('click', function (e) { if (e.target === lb || e.target.classList.contains('lb-fig')) closeLb(); });
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') $('#lbN').click();
+      if (e.key === 'ArrowLeft') $('#lbP').click();
+    });
+    (function () { var x0 = null;
+      lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 50 && group.length > 1) (dx < 0 ? $('#lbN') : $('#lbP')).click(); });
+    })();
+  })();
+  </script>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fixtock: Inventory, sales and business intelligence for growing businesses</title>
   <meta name="description" content="Fixtock brings inventory, sales, expenses and real-time financial insight into one app, for every store, every seller and every sale. Coming soon to the App Store and Google Play." />
@@ -369,8 +1738,9 @@
   </style>
 </head>
 <body>
-
+-->
   <!-- ═══ NAV ═══ -->
+<!--
   <header class="nav" id="nav">
     <div class="wrap">
       <a class="logo" href="#top" aria-label="Fixtock home">
@@ -392,8 +1762,9 @@
   </header>
 
   <main id="top">
-
+-->
     <!-- ═══ HERO ═══ -->
+<!--
     <div class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
@@ -448,6 +1819,7 @@
     </div>
 
     <!-- ═══ VALUE STRIP ═══ -->
+<!--
     <div class="wrap strip reveal">
       <div class="strip-grid">
         <div><b>Every item</b><span>Stock, batches, costs &amp; prices</span></div>
@@ -456,9 +1828,10 @@
         <div><b>Every naira, dollar &amp; cent</b><span>Profit, margin &amp; expenses</span></div>
       </div>
     </div>
-
+-->
     <!-- ═══ SHOWCASE ═══ -->
-    <section id="insights">
+<!--   
+<section id="insights">
       <div class="wrap">
         <div class="show reveal">
           <div class="show-media">
@@ -509,9 +1882,10 @@
         </div>
       </div>
     </section>
-
+-->
     <!-- ═══ FEATURES ═══ -->
-    <section id="features" class="bg-soft">
+<!--   
+<section id="features" class="bg-soft">
       <div class="wrap">
         <div class="center reveal">
           <span class="kicker">Everything in one app</span>
@@ -538,9 +1912,10 @@
         </div>
       </div>
     </section>
-
+-->
     <!-- ═══ HOW IT WORKS ═══ -->
-    <section id="how">
+<!--   
+<section id="how">
       <div class="wrap">
         <div class="center reveal">
           <span class="kicker">Get started in minutes</span>
@@ -553,9 +1928,10 @@
         </div>
       </div>
     </section>
-
+-->
     <!-- ═══ SECURITY ═══ -->
-    <section id="security" style="padding-top:0">
+<!--   
+<section id="security" style="padding-top:0">
       <div class="wrap">
         <div class="trust reveal">
           <div>
@@ -577,9 +1953,10 @@
         </div>
       </div>
     </section>
-
+-->
     <!-- ═══ FAQ ═══ -->
-    <section id="faq" class="bg-soft">
+<!--   
+<section id="faq" class="bg-soft">
       <div class="wrap">
         <div class="center reveal">
           <span class="kicker">FAQ</span>
@@ -603,9 +1980,10 @@
         </div>
       </div>
     </section>
-
+-->
     <!-- ═══ FINAL CTA ═══ -->
-    <section style="padding-bottom:0">
+<!--   
+<section style="padding-bottom:0">
       <div class="wrap">
         <div class="final reveal">
           <img src="assets/logo.png" alt="" width="72" height="72" />
@@ -625,9 +2003,10 @@
       </div>
     </section>
   </main>
-
+-->
   <!-- ═══ FOOTER ═══ -->
-  <footer>
+<!--  
+<footer>
     <div class="wrap">
       <div class="foot">
         <div>
@@ -697,3 +2076,4 @@
   </script>
 </body>
 </html>
+-->
