@@ -572,8 +572,22 @@
         <div class="tour reveal">
           <ul class="tour-list" id="tourList">
             <li class="tour-group" aria-hidden="true">Insights</li>
+            <!-- new -->
             <li class="tour-item on" data-i="0">
-              <button type="button" aria-controls="tour-stage" aria-expanded="true">
+  <button type="button" aria-controls="tour-stage" aria-expanded="true">
+    <span class="ic t-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+    <span class="tt"><b>Today</b><span>Your day so far, live.</span></span>
+    <i class="bar" aria-hidden="true"></i>
+  </button>
+  <div class="more"><ul>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Today’s sales, transactions, items sold and average sale</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Compared with yesterday, as a percentage or a multiple</li>
+    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>Top product, low stock, adjustments and transfers at a glance</li>
+  </ul></div>
+</li>
+            
+            <li class="tour-item" data-i="1">
+              <button type="button" aria-controls="tour-stage" aria-expanded="false">
                 <span class="ic t-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
                 <span class="tt"><b>Overview</b><span>Your last 14 days at a glance.</span></span>
                 <i class="bar" aria-hidden="true"></i>
@@ -674,8 +688,10 @@
           <div class="tour-side">
             <div class="tour-stage" id="tour-stage" aria-live="polite">
               <div class="screen">
+                <!-- 00-today-dollar-sm.webp · Today -->
+                <img class="zoom on" src="assets/screens/iphone/00-today-dollar-sm.webp" data-full="assets/screens/iphone/00-today-dollar-lg.webp" data-group="tour" data-caption="Today: Your day so far, live." width="600" height="1304" alt="Today: today's sales, transactions, items sold, average sale, top product, low stock, adjustments and transfers" decoding="async" fetchpriority="high" />
                 <!-- 01-overview-dollar-sm.webp · Overview -->
-                <img class="zoom on" src="assets/screens/iphone/01-overview-dollar-sm.webp" data-full="assets/screens/iphone/01-overview-dollar-lg.webp" data-group="tour" data-caption="Overview: Your last 14 days at a glance." width="600" height="1304" alt="Overview: revenue, net result, gross margin and where revenue went over the last 14 days" decoding="async" fetchpriority="high" />
+                <img class="zoom" src="assets/screens/iphone/01-overview-dollar-sm.webp" data-full="assets/screens/iphone/01-overview-dollar-lg.webp" data-group="tour" data-caption="Overview: Your last 14 days at a glance." width="600" height="1304" alt="Overview: revenue, net result, gross margin and where revenue went over the last 14 days" decoding="async" loading="lazy" />
                 <!-- 13-daily-sales-sm.webp · Daily sales -->
                 <img class="zoom" src="assets/screens/iphone/13-daily-sales-sm.webp" data-full="assets/screens/iphone/13-daily-sales-lg.webp" data-group="tour" data-caption="Daily sales: Every sale. Every seller. Every hour." width="600" height="1304" alt="Daily sales: today&#x27;s total, sales by hour, sales by seller and each sale record" decoding="async" loading="lazy" />
                 <!-- 06-business-health-sm.webp · Business health -->
